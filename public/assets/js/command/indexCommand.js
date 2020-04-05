@@ -56,8 +56,7 @@ for (let index = 0; index < command.nbCommand; index++) {
                 break;
         }
         let year = date.getFullYear()
-        console.log(month)
-        console.log(day +' '+ month +' '+ year)
+    
 
         // ------------
         $('.number-command').html(data.number)
