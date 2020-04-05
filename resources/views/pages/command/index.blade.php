@@ -17,15 +17,15 @@
         <p class="postalCode-city">Code postal Ville</p>
     </div>
     <div>
-      <img class="origin-command" width="90" src="https://www.flaticon.com/premium-icon/icons/svg/2275/2275956.svg" alt="">
-      <p class="date-command">date de la commande</p>
-      <p class="status">Statut</p>
+      {{-- <img class="origin-command" width="90" src="https://www.flaticon.com/premium-icon/icons/svg/2275/2275956.svg" alt=""> --}}
+      <p class="date-command"></p>
+      <i class="status">Statut</i>
     </div>
     <p class="exit"><button class="btn">X</></p>
   </div>
   <hr>
-  <h3>Details Commande</h3>
-  <div class="overflow-auto" style="height: 200px">
+  <h3 class="text-center">Detail de la commande</h3>
+  <div class="overflow-auto" id="table-articles">
       <table class="table">
           <thead>
             <tr>
@@ -35,15 +35,15 @@
               <th scope="col">Prix</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="tbody-articles">
 
           @for ($i = 0; $i < 10; $i++)
-          <tr class="article-{{$i}} d-none">
+          {{-- <tr class="article-{{$i}} d-none">
             <th scope="row"><img class="img-{{$i}}" width="30" src="" alt=""></th>
             <td class="product-{{$i}}"></td>
             <td class="quantity-{{$i}}"></td>
             <td class="price-{{$i}}"></td>
-          </tr>   
+          </tr>    --}}
           @endfor
           </tbody>
           <tfoot>
