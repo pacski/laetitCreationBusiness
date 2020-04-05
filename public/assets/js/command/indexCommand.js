@@ -7,11 +7,72 @@ let command = $('.table').data('command')
 for (let index = 0; index < command.nbCommand; index++) {
     $('.row-command-'+index).click(function(){
         let data = $('.row-command-'+index).data('info')
+
+        // date
+        let date = new Date(data.date)
+        let day = date.getDate()
+
+        var month = date.getMonth()
+      
+        switch (month) {
+            case 1:
+                var month = "Janvier"
+                break;
+            case 2:
+                var month = "Février"
+                break;
+            case 3:
+                var month = "Mars"
+                break;
+            case 4:
+                var month = "Avril"
+                break;
+            case 5:
+                var month = "Mai"
+                break;
+            case 6:
+                var month = "Juin"
+                break;
+            case 7:
+                var month = "Juillet"
+                break;
+            case 8:
+                var month = "Aout"
+                break;
+            case 9:
+                var month = "Septembre"
+                break;
+            case 10:
+                var month = "Octobre"
+                break;
+            case 11:
+                var month = "Novembre"
+                break;
+            case 12:
+                var month = "Décembre"
+                break;
+        
+            default:
+                break;
+        }
+        let year = date.getFullYear()
+        console.log(month)
+        console.log(day +' '+ month +' '+ year)
+
+        // ------------
         $('.number-command').html(data.number)
+        $('.date-command').html(day +' '+ month +' '+ year)
         $('.fname-lname').html(data.fname + ' ' +data.lname)
         $('.adress').html(data.adresse)
         $('.postalCode-city').html(data.postalCode +' '+ data.city)
-        $('.status').html(data.status)
+
+        if (data.status = 1)
+        {
+            $('.status').html('En attente...')
+        }else{
+            $('.status').html('Envoyé')
+        }
+        // $('.status').html(data.status)
 
         if (data.origin == "etsy")
         {
@@ -26,15 +87,13 @@ for (let index = 0; index < command.nbCommand; index++) {
 
         var totalPrice = 0
 
+        $('.article-line').remove()
+
         for (let index = 0; index < nbArticle; index++) {
         
             if (data.articles[index]){
                 totalPrice = totalPrice + data.articles[index].price
-
-                $('.article-'+index).removeClass('d-none')
-                $('.product-'+index).html(data.articles[index].name)
-                $('.quantity-'+index).html(data.articles[index].quantity)
-                $('.price-'+index).html(data.articles[index].price)
+                $('.tbody-articles').append('<tr class="article-line"><td><img class="img-'+index+'" width="30" src="" alt=""></td><td>'+data.articles[index].name+'</td><td>'+data.articles[index].quantity+'</td><td>'+data.articles[index].price +'€'+'</td></tr>')
                 $('.img-'+index).attr('src', 'images/Fabric/'+data.articles[index].fabric.image)
             }
         }
