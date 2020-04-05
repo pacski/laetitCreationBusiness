@@ -1,0 +1,58 @@
+
+
+.addFormTissus{
+display: flex;
+justify-content: center;
+flex-direction: column;
+width: 50%;;
+margin: auto;
+text-align:center;
+}
+
+
+.nearEmpty{
+    background: orange
+}
+
+.empty{
+ background: red;
+}
+
+tr:hover{
+    opacity: 0.5;
+}
+
+.addFormCommands{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    text-align:center;
+}
+
+.btn{
+    background-color: #efc6cc;
+    border: #efc6cc;
+    color: black;
+}
+
+.btn:hover{
+    background-color: #b86f7a;
+}
+
+thead tr th{
+    color: #b86f7a;
+    font: bold
+}
+.filter select, input{
+    margin: 0 5px
+}
+
+.filterReset{
+    margin: 5px 0px
+}
+
+.form-control{
+    margin-left: 0%;
+}

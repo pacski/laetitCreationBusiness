@@ -1,0 +1,16 @@
+.details-command-container{
+    background: white;
+    position: absolute;
+    position: fixed;
+    z-index: auto;
+    top: 0;
+    right:0;
+    width: 40%;
+    height: 100%;
+}
+
+.exit button{
+height: 35px;
+width: 35px   
+}
+

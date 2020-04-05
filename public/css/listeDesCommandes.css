@@ -1,0 +1,46 @@
+.imageTissu{
+    height: 40px;
+    width: 40px;
+}
+
+td, tr{
+    text-align: center;
+}
+
+.nbCmd{
+    cursor: pointer;
+}
+
+
+.search{
+    margin: 0 15px;
+}
+
+
+
+
+/* page search */
+
+
+.backButton{    
+    margin: 0 0 10px 10px;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+.pagination .page-item .page-link{
+    color: black;
+    background-color: #efc6cc;
+}
+
+/* pagination */
+
+.pagination a {
+    color: #efc6cc;
+    margin: 0 5px;
+    
+}
+.pagination a, p {
+    font-size: 20px;
+}
