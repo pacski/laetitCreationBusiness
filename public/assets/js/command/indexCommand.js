@@ -71,6 +71,7 @@ for (let index = 0; index < command.nbCommand; index++) {
         }else{
             $('.status').html('Envoyé')
         }
+
         // $('.status').html(data.status)
 
         if (data.origin == "etsy")
@@ -113,5 +114,3 @@ $('.exit').click(function(){
 })
 
 
-console.log('test')
-console.log('test')
