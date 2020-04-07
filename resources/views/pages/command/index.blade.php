@@ -36,15 +36,6 @@
             </tr>
           </thead>
           <tbody class="tbody-articles">
-
-          @for ($i = 0; $i < 10; $i++)
-          {{-- <tr class="article-{{$i}} d-none">
-            <th scope="row"><img class="img-{{$i}}" width="30" src="" alt=""></th>
-            <td class="product-{{$i}}"></td>
-            <td class="quantity-{{$i}}"></td>
-            <td class="price-{{$i}}"></td>
-          </tr>    --}}
-          @endfor
           </tbody>
           <tfoot>
             <tr>
