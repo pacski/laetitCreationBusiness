@@ -10,21 +10,19 @@
 @include('pages.command.paginate')
 <div class="details-command-container d-none">
   <div class="d-flex">
-    <div  class="d-flex flex-column">
-        <h3 class="number-command"></h3>
-        <p class="fname-lname"></p>
-        <p class="adress"></p>
-        <p class="postalCode-city">Code postal Ville</p>
-    </div>
-    <div>
-      {{-- <img class="origin-command" width="90" src="https://www.flaticon.com/premium-icon/icons/svg/2275/2275956.svg" alt=""> --}}
-      <p class="date-command"></p>
-      <i class="status">Statut</i>
+    <div id="details-client"  class="d-flex flex-column">
+      {{-- <p class="number-command text-center"></p>
+      <p class="fname"></p>
+      <p class="lname"></p> --}}
+      <p>Numéro de commande : <strong class="number-command"></strong></p>
+      <p>Nom : <strong class="fname"></strong></p>
+      <p>Prénom : <strong class="lname"></strong></p>
+      <p>Adresse : <strong class="adress"></strong><strong class="postalCode-city"></strong></p>
+      <p>Date de la commande : <strong class="date-command"></strong></p>
+      <p>Statut : <strong class="status"></strong></p>
     </div>
     <p class="exit"><button class="btn">X</></p>
   </div>
-  <hr>
-  <h3 class="text-center">Detail de la commande</h3>
   <div class="overflow-auto" id="table-articles">
       <table class="table">
           <thead>
@@ -47,7 +45,7 @@
           </tfoot>
         </table>
   </div>
- 
+  <hr>
 </div>
 
 <script src="/assets/js/command/indexCommand.js"></script>

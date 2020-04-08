@@ -61,9 +61,10 @@ for (let index = 0; index < command.nbCommand; index++) {
         // ------------
         $('.number-command').html(data.number)
         $('.date-command').html(day +' '+ month +' '+ year)
-        $('.fname-lname').html(data.fname + ' ' +data.lname)
+        $('.fname').html(data.fname)
+        $('.lname').html(data.lname)
         $('.adress').html(data.adresse)
-        $('.postalCode-city').html(data.postalCode +' '+ data.city)
+        $('.postalCode-city').html(' '+data.postalCode +' '+ data.city)
 
         if (data.status = 1)
         {

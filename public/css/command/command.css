@@ -7,19 +7,33 @@
     right:0;
     width: 40%;
     height: 100%;
+    
+    -webkit-box-shadow: -16px -1px 32px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -16px -1px 32px -5px rgba(0,0,0,0.75);
+    box-shadow: -16px -1px 32px -5px rgba(0,0,0,0.75);
 }
 
 .exit button{
-height: 35px;
-width: 35px;
-position: absolute;
-position: fixed;
-top: 4px;
-right: 4px;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    position: fixed;
+    top: 4px;
+    right: 4px;
 }
 
 
 #table-articles{
     height: 300px;
-    border: solid red;
+}
+
+.details-command-container strong {
+    font-size: 15px;
+}
+#details-client{
+    width: 100%;
+    padding: 10px;
+}
+#details-client p{
+    font-weight: 200;
 }
