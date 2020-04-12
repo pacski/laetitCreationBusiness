@@ -61,19 +61,22 @@ for (let index = 0; index < command.nbCommand; index++) {
         // ------------
         $('.number-command').html(data.number)
         $('.date-command').html(day +' '+ month +' '+ year)
+        $('.duration').html('('+data.duration + ' jours)')
         $('.fname').html(data.fname)
         $('.lname').html(data.lname)
         $('.adress').html(data.adresse)
+        $('.status-command-id').attr('value',data.commandId)
         $('.postalCode-city').html(' '+data.postalCode +' '+ data.city)
+        $('.btn-update-status-command').data('info', {commandId: data.commandId})
 
-        if (data.status = 1)
+        if (data.status == 1)
         {
-            $('.status').html('En attente...')
+            $('.status').html('En attente')
+        }else if (data.status == 2){
+            $('.status').html('Réalisée')
         }else{
-            $('.status').html('Envoyé')
+            $('.status').html('Envoyée')
         }
-
-        // $('.status').html(data.status)
 
         if (data.origin == "etsy")
         {
@@ -104,8 +107,35 @@ for (let index = 0; index < command.nbCommand; index++) {
         $('.details-command-container').removeClass('d-none')
     
     
-    
+      // update status command
+      $('.btn-update-status-command').on('click',function (evt){
+        evt.preventDefault()
+        var commandId = $('.status-command-id').val()
+        var status = $('.update-status-command').val()
+        var _token = $('input[type="hidden"]').attr('value');
+
+            $.ajax({
+                url: UPDATE_STATUS_COMMAND.replace('DYN_ID', commandId),
+                data: {_token, commandId, status},
+                type: 'POST',
+                success: function () {
+                    console.log('success')
+                    if (status == 1)
+                    {
+                        $('.status').html('En attente')
+                    }else if(status == 2){
+                        $('.status').html('Réalisée')
+                    }else {
+                        $('.status').html('Envoyée')
+                    }
+
+                },
+                error: function (){
+                    console.log('error')
+                }
+            })
     })
+    })  
 }
 
 $('.exit').click(function(){

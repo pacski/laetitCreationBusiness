@@ -123,5 +123,14 @@ class CommandController extends Controller
 
      return back();
     }
-    
+
+    public function updateStatus(Request $request, CommandRepository $commandRepository)
+    {     
+         $params = [
+          'commandId' => $request->id,
+          'status' => $request->status
+         ];
+          $response = $commandRepository->updateStatus($params);
+          return response($response['body'], $response['code']);
+     }
 }

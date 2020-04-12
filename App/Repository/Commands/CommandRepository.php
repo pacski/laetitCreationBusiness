@@ -51,4 +51,13 @@ class CommandRepository extends ResponseManagement
         $command = Command::orderBy('created_at', 'desc')->first();
         return $command;
     }
+
+    public function updateStatus (Array $params = [])
+    {
+        $record = Command::where('id', $params['commandId'])->update([
+            'status' => $params['status']
+        ]);
+
+        return $this->Response($record, 200);
+    } 
 }

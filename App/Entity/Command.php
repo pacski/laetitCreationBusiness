@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Command extends Model
 {
     protected $fillable = ['number', 'origin', 'fname', 'lname', 'adress', 'postalCode',
-         'city', 'status'];
+         'city', 'status', 'comment'];
 
     public function articles ()
     {

@@ -41,8 +41,9 @@ Route::prefix('/fabric')->group(function (){
 
 Route::prefix('/command')->group(function (){
     Route::get('', 'CommandController@index')
-    ->name('pages.command.index');
-
+        ->name('pages.command.index');
     Route::post('addCommand', 'CommandController@create')
-    ->name('pages.command.create');
+        ->name('pages.command.create');
+    Route::post('update', 'CommandController@updateStatus')
+        ->name('pages.command.update');
 });

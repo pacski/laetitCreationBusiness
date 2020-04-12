@@ -11,15 +11,13 @@
 <div class="details-command-container d-none">
   <div class="d-flex">
     <div id="details-client"  class="d-flex flex-column">
-      {{-- <p class="number-command text-center"></p>
-      <p class="fname"></p>
-      <p class="lname"></p> --}}
       <p>Numéro de commande : <strong class="number-command"></strong></p>
       <p>Nom : <strong class="fname"></strong></p>
       <p>Prénom : <strong class="lname"></strong></p>
       <p>Adresse : <strong class="adress"></strong><strong class="postalCode-city"></strong></p>
-      <p>Date de la commande : <strong class="date-command"></strong></p>
+      <p>Date de la commande : <strong class="date-command"></strong> <strong class="duration"></strong></p>
       <p>Statut : <strong class="status"></strong></p>
+      <p>Commentaire : <strong class="comment"></strong></p>
     </div>
     <p class="exit"><button class="btn">X</></p>
   </div>
@@ -46,9 +44,22 @@
         </table>
   </div>
   <hr>
+    <div class="d-flex flex-column mx-auto">
+      <form method="POST" action="{{route('pages.command.update', )}}">
+        @csrf
+        <input type="hidden" name="id" value="" class="status-command-id">
+          <select class="btn update-status-command" name="status">
+              <option value="1">En attente</option>
+              <option value="2">Réalisée</option>
+              <option value="3">Envoyée</option>
+            </select>
+            <br>
+            <button class="btn btn-update-status-command" type="submit">Valider</button>
+      </form>
+    </div>
+  
+
 </div>
-
 <script src="/assets/js/command/indexCommand.js"></script>
-
 @endsection
 
