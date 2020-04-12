@@ -45,5 +45,9 @@ Route::prefix('/command')->group(function (){
     Route::post('addCommand', 'CommandController@create')
         ->name('pages.command.create');
     Route::post('update', 'CommandController@updateStatus')
-        ->name('pages.command.update');
+        ->name('pages.command.updateStatus');
+    Route::post('addComment', 'CommandController@addComment')
+        ->name('pages.command.addComment');
+    Route::post('delete', 'CommandController@delete')
+        ->name('pages.command.delete');
 });

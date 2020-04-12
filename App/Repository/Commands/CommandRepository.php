@@ -60,4 +60,21 @@ class CommandRepository extends ResponseManagement
 
         return $this->Response($record, 200);
     } 
+
+    public function addComment (Array $params = [])
+    {
+        $record = Command::where('id', $params['commandId'])->update([
+            'comment' => $params['comment']
+        ]);
+
+        return $this->Response($record, 200);
+    } 
+    public function delete (Array $params = [])
+    {
+        $record = Command::where('id', $params['commandId'])->delete();
+        
+        return $this->Response($record, 200);
+
+    }
+        
 }

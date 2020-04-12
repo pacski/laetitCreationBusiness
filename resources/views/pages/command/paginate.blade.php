@@ -33,6 +33,7 @@
       'postalCode' => $command->postalCode,
       'city' => $command->city,
       'status' => $command->status,
+      'comment' => $command->comment,
       'date' => $command->created_at,
       'duration' => duration($command->created_at, "days"),
       ])

@@ -42,3 +42,43 @@
     width: 100%;
     padding: 5px 5ps;
 }
+
+.status-command-form{
+    padding: 20px;
+}
+
+.btn-comment{
+    cursor: pointer;
+}
+.comment-form{
+    width: 30%;
+    border: solid;
+    border-radius: 10%;
+    padding: 10px;
+    position: absolute;
+    position: fixed;
+    top: 30%;
+    background:rgba(255,255,255, 1);
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0; 
+    visibility: hidden;
+}
+.comment-form button{
+    width: 50%;
+    margin: auto
+}
+.comment-form textarea{
+    border-radius: 5%;
+    border: solid;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
