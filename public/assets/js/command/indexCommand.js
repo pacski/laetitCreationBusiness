@@ -109,7 +109,7 @@ for (let index = 0; index < command.nbCommand; index++) {
     
     
     // update status command
-      $('.btn-update-status-command').on('click',function (evt){
+      $('.update-status-command').on('change',function (evt){
         evt.preventDefault()
         $('.status-command-id').attr('value',data.commandId)
         var commandId = $('.status-command-id').val()

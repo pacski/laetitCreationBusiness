@@ -67,7 +67,6 @@
           <option value="3">Envoyée</option>
         </select>
         <br>
-            <button class="btn justify-content-center btn-update-status-command" type="submit">Valider</button>           
             <button class="btn justify-content-center btn-delete-command" type="submit">Annuler</button>           
       </form>
     </div>
