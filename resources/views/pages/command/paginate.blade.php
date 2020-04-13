@@ -21,7 +21,7 @@
   @endforeach
 
 
-    <tr class="row-command-{{$key}}" data-info="{{@json_encode([
+    <tr class="row-command-{{$key}}" id="command-{{$command->id}}" data-info="{{@json_encode([
       "articles" =>$command->articles,
       "nbArticle" =>$command->articles->count(),
       "commandId" =>$command->id,

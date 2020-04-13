@@ -3,7 +3,8 @@ let vinted = "https://1.bp.blogspot.com/-46zpL0xuVws/W5lHHMv8HmI/AAAAAAAAARI/IZI
 let etsy = "https://image.flaticon.com/icons/svg/825/825513.svg"
 
 let command = $('.table').data('command')
-var once = false
+var onceComment = false
+var onceDelete = false
 for (let index = 0; index < command.nbCommand; index++) {
     $('.row-command-'+index).click(function(){
         let data = $('.row-command-'+index).data('info')
@@ -145,8 +146,8 @@ for (let index = 0; index < command.nbCommand; index++) {
         $('.add-comment-command').val(data.comment)
 
         $('.comment-command-id').attr('value',data.commandId)
-        console.log(once)
-        if (!once)
+        console.log(onceComment)
+        if (!onceComment)
         {
             $('.add-comment').on('click', function (evt){
                 evt.preventDefault()
@@ -161,7 +162,7 @@ for (let index = 0; index < command.nbCommand; index++) {
                     type: 'POST',
                     success: function () {
                         console.log('success')
-                        var once = true
+                        var onceComment = true
                         $('.comment-form').css('visibility', 'hidden')
                         $('.comment').html(comment)
     
@@ -181,21 +182,23 @@ for (let index = 0; index < command.nbCommand; index++) {
         var commandId = $('.status-command-id').val()
         var _token = $('input[type="hidden"]').attr('value');
 
-        $.ajax({
-            url: DELETE_COMMAND.replace('DYN_ID', commandId),
-            data: {_token, commandId},
-            type: 'POST',
-            success: function () {
-                console.log('success')
-                $('.comment-form').css('visibility', 'hidden')
-                $('.details-command-container').addClass('d-none')
-                $('.row-command-' + index).addClass('d-none')
-            },
-            error: function (){
-                console.log('error')
-            }
-        })
-
+        if (!onceDelete)
+        {
+            $.ajax({
+                url: DELETE_COMMAND.replace('DYN_ID', commandId),
+                data: {_token, commandId},
+                type: 'POST',
+                success: function () {
+                    console.log('success')
+                    $('.comment-form').css('visibility', 'hidden')
+                    $('.details-command-container').addClass('d-none')
+                    $('#command-' + commandId).addClass('d-none')
+                },
+                error: function (){
+                    console.log('error')
+                }
+            })
+        }
     })
 
 
