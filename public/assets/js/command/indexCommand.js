@@ -3,7 +3,8 @@ let vinted = "https://1.bp.blogspot.com/-46zpL0xuVws/W5lHHMv8HmI/AAAAAAAAARI/IZI
 let etsy = "https://image.flaticon.com/icons/svg/825/825513.svg"
 
 let command = $('.table').data('command')
-
+var onceComment = false
+var onceDelete = false
 for (let index = 0; index < command.nbCommand; index++) {
     $('.row-command-'+index).click(function(){
         let data = $('.row-command-'+index).data('info')
@@ -61,18 +62,22 @@ for (let index = 0; index < command.nbCommand; index++) {
         // ------------
         $('.number-command').html(data.number)
         $('.date-command').html(day +' '+ month +' '+ year)
-        $('.fname-lname').html(data.fname + ' ' +data.lname)
+        $('.duration').html('('+data.duration + ' jours)')
+        $('.fname').html(data.fname)
+        $('.lname').html(data.lname)
         $('.adress').html(data.adresse)
-        $('.postalCode-city').html(data.postalCode +' '+ data.city)
+        $('.comment').html(data.comment)
+        $('.status-command-id').attr('value',data.commandId)
+        $('.postalCode-city').html(' '+data.postalCode +' '+ data.city)
 
-        if (data.status = 1)
+        if (data.status == 1)
         {
-            $('.status').html('En attente...')
+            $('.status').html('En attente')
+        }else if (data.status == 2){
+            $('.status').html('Réalisée')
         }else{
-            $('.status').html('Envoyé')
+            $('.status').html('Envoyée')
         }
-
-        // $('.status').html(data.status)
 
         if (data.origin == "etsy")
         {
@@ -103,8 +108,101 @@ for (let index = 0; index < command.nbCommand; index++) {
         $('.details-command-container').removeClass('d-none')
     
     
-    
+    // update status command
+      $('.update-status-command').on('change',function (evt){
+        evt.preventDefault()
+        $('.status-command-id').attr('value',data.commandId)
+        var commandId = $('.status-command-id').val()
+        var status = $('.update-status-command').val()
+        var _token = $('input[type="hidden"]').attr('value');
+
+            $.ajax({
+                url: UPDATE_STATUS_COMMAND.replace('DYN_ID', commandId),
+                data: {_token, commandId, status},
+                type: 'POST',
+                success: function () {
+                    console.log('success')
+                    if (status == 1)
+                    {
+                        $('.status').html('En attente')
+                    }else if(status == 2){
+                        $('.status').html('Réalisée')
+                    }else {
+                        $('.status').html('Envoyée')
+                    }
+            
+                },
+                error: function (){
+                    console.log('error')
+                }
+            })
     })
+
+    // add comment 
+    
+
+    $('.btn-comment').on('click', function (){
+        $('.comment-form').css('visibility', 'initial')
+        $('.add-comment-command').val(data.comment)
+
+        $('.comment-command-id').attr('value',data.commandId)
+        console.log(onceComment)
+        if (!onceComment)
+        {
+            $('.add-comment').on('click', function (evt){
+                evt.preventDefault()
+    
+                var commandId = $('.comment-command-id').val()
+                var comment = $('.add-comment-command').val()
+                var _token = $('input[type="hidden"]').attr('value');
+        
+                $.ajax({
+                    url: ADD_COMMENT_COMMAND.replace('DYN_ID', commandId),
+                    data: {_token, commandId, comment},
+                    type: 'POST',
+                    success: function () {
+                        console.log('success')
+                        var onceComment = true
+                        $('.comment-form').css('visibility', 'hidden')
+                        $('.comment').html(comment)
+    
+                    },
+                    error: function (){
+                        console.log('error')
+                    }
+                })
+            })   
+        }
+
+    })
+    // delete command
+
+    $('.btn-delete-command').on('click', function (evt){
+        evt.preventDefault()
+        var commandId = $('.status-command-id').val()
+        var _token = $('input[type="hidden"]').attr('value');
+
+        if (!onceDelete)
+        {
+            $.ajax({
+                url: DELETE_COMMAND.replace('DYN_ID', commandId),
+                data: {_token, commandId},
+                type: 'POST',
+                success: function () {
+                    console.log('success')
+                    $('.comment-form').css('visibility', 'hidden')
+                    $('.details-command-container').addClass('d-none')
+                    $('#command-' + commandId).addClass('d-none')
+                },
+                error: function (){
+                    console.log('error')
+                }
+            })
+        }
+    })
+
+
+    })  
 }
 
 $('.exit').click(function(){

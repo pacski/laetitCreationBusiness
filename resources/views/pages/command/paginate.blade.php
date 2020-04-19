@@ -21,9 +21,10 @@
   @endforeach
 
 
-    <tr class="row-command-{{$key}}" data-info="{{@json_encode([
+    <tr class="row-command-{{$key}}" id="command-{{$command->id}}" data-info="{{@json_encode([
       "articles" =>$command->articles,
       "nbArticle" =>$command->articles->count(),
+      "commandId" =>$command->id,
       "origin" =>$command->origin,
       "number" => $command->number,
       'fname' => $command->fname,
@@ -32,7 +33,9 @@
       'postalCode' => $command->postalCode,
       'city' => $command->city,
       'status' => $command->status,
+      'comment' => $command->comment,
       'date' => $command->created_at,
+      'duration' => duration($command->created_at, "days"),
       ])
     }}">
     <span class="d-none row-product-{{$key}}" data-product="{{@json_encode([

@@ -123,5 +123,33 @@ class CommandController extends Controller
 
      return back();
     }
-    
+
+    public function updateStatus(Request $request, CommandRepository $commandRepository)
+    {     
+         $params = [
+          'commandId' => $request->id,
+          'status' => $request->status
+         ];
+          $response = $commandRepository->updateStatus($params);
+          return response($response['body'], $response['code']);
+     }
+
+     public function addComment (Request $request, CommandRepository $commandRepository)
+     {
+          $params = [
+               'commandId' => $request->id,
+               'comment' => $request->comment,
+          ];
+          $response = $commandRepository->addComment($params);
+          return response($response['body'], $response['code']);
+     }
+
+     public function delete (Request $request, CommandRepository $commandRepository)
+     {
+          $params = [
+               'commandId' => $request->id,
+          ];
+          $response = $commandRepository->delete($params);
+          return response($response['body'], $response['code']);
+     }
 }
