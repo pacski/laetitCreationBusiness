@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repository\Commands\CommandRepository;
-use App\Repository\Products\productRepository;
+use App\Repository\Products\ProductRepository;
 use App\Repository\Fabrics\FabricRepository;
 use App\Repository\Articles\ArticleRepository;
 use App\Repository\Stocks\StockRepository;
 use App\Entity\Product;
 use App\Entity\Stock;
 use App\Entity\Fabric;
-use \stdClass;
 
 
 class CommandController extends Controller
@@ -24,11 +23,11 @@ class CommandController extends Controller
         $commands = $commandRepository->list();
 
 
-        $test = new stdClass();
+        $test = new \stdClass();
 
        for ($i=1; $i < 10; $i++) { 
             $product = "product-".$i;
-            $secondObject =  new stdClass();
+            $secondObject =  new \stdClass();
             $test->$product = $secondObject;
 
             $productName = "product-".$i;
@@ -82,22 +81,18 @@ class CommandController extends Controller
 
     public function create(Request $request, CommandRepository $commandRepository,
     ArticleRepository $articleRepository, StockRepository $stockRepository,
-    FabricRepository $fabricRepository )
+    FabricRepository $fabricRepository, ProductRepository $productRepository )
     {
-     $params = [
-          'lname' => $request->lname,
-          'fname' => $request->fname,
-          'adresse' => $request->adresse,
-          'postalCode' => $request->postalCode,
-          'city' => $request->city,
-          'origin' => $request->origin,
-     ];
+     
      $productArray = [];
-     $products = new stdClass();
+     $products = new \stdClass();
 
-     for ($i=1; $i < 10; $i++) { 
+     $nbProducts = count($productRepository->list());
+
+     for ($i=1; $i < $nbProducts; $i++) {
+
           $product = "product-".$i;
-          $secondObject =  new stdClass();
+          $secondObject =  new \stdClass();
           $products->$product = $secondObject;
 
           $productName = "product-".$i;
@@ -108,16 +103,34 @@ class CommandController extends Controller
           $secondObject->quantity = $request->input($productQuantity);  
           $secondObject->tissu = $request->input($productTissu);  
 
+          array_push($productArray, $request->input($productName));
+
+          if ($request->input($productName) == null)
+          {
+               unset($productArray[$i - 1]);
+          }
      }
 
-     $commandRepository->create($params);
+     $params = [
+          'lname' => $request->lname,
+          'fname' => $request->fname,
+          'adresse' => $request->adresse,
+          'postalCode' => $request->postalCode,
+          'city' => $request->city,
+          'origin' => $request->origin,
+          'nbProduct' => count($productArray),
+     ];
 
-     $command = $commandRepository->showLast();
+     dd($productArray);
 
-     $articleRepository->create( $command,  $products);
+     $commandRepository->create($params, $request);
 
-     $stockRepository->stockAfterCommand($products);
-     $fabricRepository->stockAfterCommand($products);
+     // $command = $commandRepository->showLast();
+
+     // $articleRepository->create($command,  $products);
+
+     // $stockRepository->stockAfterCommand($products);
+     // $fabricRepository->stockAfterCommand($products);
 
 
 

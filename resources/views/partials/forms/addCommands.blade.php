@@ -116,7 +116,8 @@
           <div id="produit-{{$i}}"  class="form-row d-none">
             <div class="form-group col-md-4">
                 <select class="custom-select product-{{$i}}" name="product-{{$i}}" >
-                    <option name="product-{{$i}}" value="product-none-{{$i}}" selected>Produit {{$i}}</option>
+                    {{-- <option name="product-{{$i}}" value="product-none-{{$i}}" selected>Produit {{$i}}</option> --}}
+                    <option name="" value="" selected>Produit {{$i}}</option>
                     @foreach ($products as $product)
                       <option value="{{$product->name}}">{{$product->name}} ({{$product->cost}} cm)</option>
                     @endforeach
@@ -129,7 +130,7 @@
                 </div>
               </div>
               <div class="form-group col-md-4">
-                  <select  class="custom-select" name="quantity-{{$i}}" >
+                  <select class="custom-select" name="quantity-{{$i}}" >
                       <option value="" selected>Quantité</option>
                       @for ($j = 1; $j < 100; $j++)
                         <option  value="{{$j}}">{{$j}}</option>
@@ -144,7 +145,7 @@
               </div>
               <div class="form-group col-md-4">
                   <select class="custom-select" name="tissu-{{$i}}" >
-                      <option selected>Tissu</option>
+                      <option value="" selected>Tissu</option>
                       @foreach ($fabrics as $fabric)
                         <option value="{{$fabric->name}}">{{$fabric->name}} ({{$fabric
                         ->quantity}} cm)</option>
