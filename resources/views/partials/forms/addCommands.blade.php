@@ -115,7 +115,7 @@
         @for ($i = 2; $i < $products->count() + 1; $i++)
           <div id="produit-{{$i}}"  class="form-row d-none">
             <div class="form-group col-md-4">
-                <select class="custom-select product-{{$i}}" name="product-{{$i}}" >
+                <select class="custom-select product-{{$i}}" name="product-{{$i}}" > 
                     {{-- <option name="product-{{$i}}" value="product-none-{{$i}}" selected>Produit {{$i}}</option> --}}
                     <option name="" value="" selected>Produit {{$i}}</option>
                     @foreach ($products as $product)
