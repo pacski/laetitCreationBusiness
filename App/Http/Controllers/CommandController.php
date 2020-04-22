@@ -121,16 +121,11 @@ class CommandController extends Controller
           'nbProduct' => count($productArray),
      ];
 
-     dd($productArray);
-
      $commandRepository->create($params, $request);
-
-     // $command = $commandRepository->showLast();
-
-     // $articleRepository->create($command,  $products);
-
-     // $stockRepository->stockAfterCommand($products);
-     // $fabricRepository->stockAfterCommand($products);
+     $command = $commandRepository->showLast();
+     $articleRepository->create($command,  $products);
+     $stockRepository->stockAfterCommand($products);
+     $fabricRepository->stockAfterCommand($products);
 
 
 
