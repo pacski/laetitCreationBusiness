@@ -16,40 +16,40 @@ for (let index = 0; index < command.nbCommand; index++) {
         var month = date.getMonth()
       
         switch (month) {
-            case 1:
+            case 0:
                 var month = "Janvier"
                 break;
-            case 2:
+            case 1:
                 var month = "Février"
                 break;
-            case 3:
+            case 2:
                 var month = "Mars"
                 break;
-            case 4:
+            case 3:
                 var month = "Avril"
                 break;
-            case 5:
+            case 4:
                 var month = "Mai"
                 break;
-            case 6:
+            case 5:
                 var month = "Juin"
                 break;
-            case 7:
+            case 6:
                 var month = "Juillet"
                 break;
-            case 8:
+            case 7:
                 var month = "Aout"
                 break;
-            case 9:
+            case 8:
                 var month = "Septembre"
                 break;
-            case 10:
+            case 9:
                 var month = "Octobre"
                 break;
-            case 11:
+            case 10:
                 var month = "Novembre"
                 break;
-            case 12:
+            case 11:
                 var month = "Décembre"
                 break;
         
