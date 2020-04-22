@@ -63,7 +63,7 @@ class ProductController extends Controller
             $secondObject->quantity = $request->input($materielQuantity);   
         }
 
-        $response = $productRepository->store($params, $materiels);
+        $response = $productRepository->store($params, $materiels, $request);
 
         return back();
     }

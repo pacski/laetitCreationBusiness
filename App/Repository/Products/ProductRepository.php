@@ -11,8 +11,18 @@ use App\Toolbox\ResponseManagement;
 
 class ProductRepository extends ResponseManagement
 {
-    public function store(array $params = [], $materiels)
+    public function store(array $params = [], $materiels, $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'cost' => 'required',
+            'price' => 'required',
+            'productionTime' => 'required',
+            'image' => ['required'],
+            'materiel_1' => ['required'],
+            'quantity_1' => ['required']
+        ]);
+
         Product::create([
            'name' => $params['name'],
            'image' => $params['image'],

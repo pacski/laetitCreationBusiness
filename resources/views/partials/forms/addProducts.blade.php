@@ -5,14 +5,8 @@
         <div class="form-row d-flex justify-content-center">
           <div class="col-md-6 mb-6">
             <input type="text" class="form-control" id="validationCustom01" placeholder="Nom" name="name" required>
-            <div class="valid-feedback">
-              Valide !
-            </div>
-            <div class="invalid-feedback">
-              Valeur manquante !
-            </div>
             @if ($errors->has('name'))
-            <p>{{$errors->first('name')}}</p>
+              <p>{{$errors->first('name')}}</p>
             @endif
           </div>
         </div>
@@ -21,34 +15,25 @@
               <div class="input-group-prepend">
               </div>
               <input type="number" class="form-control" id="validationCustomUsername" placeholder="Coût (Cm)" aria-describedby="inputGroupPrepend" name="cost" required>
-              <div class="valid-feedback">
-                Valide !
-              </div>
-              <div class="invalid-feedback">
-                Valeur manquante !
-              </div>
+              @if ($errors->has('cost'))
+                <p>{{$errors->first('cost')}}</p>
+              @endif
           </div>
         </div>
         <div class="form-row d-flex justify-content-center">
           <div class="col-md-6 mb-6 ">
             <input type="number" class="form-control" id="validationCustom03" placeholder="Prix" name="price" required>
-            <div class="valid-feedback">
-              Valide !
-            </div>
-            <div class="invalid-feedback">
-              Valeur manquante !
-            </div>
+            @if ($errors->has('price'))
+              <p>{{$errors->first('price')}}</p>
+            @endif
           </div>
         </div>
         <div class="form-row d-flex justify-content-center">
           <div class="col-md-6 mb-6 ">
             <input type="number" class="form-control" id="validationCustom04" placeholder="Temps de production (Min)" name="productionTime" required>
-            <div class="valid-feedback">
-              Valide !
-            </div>
-            <div class="invalid-feedback">
-              Valeur manquante !
-            </div>
+            @if ($errors->has('productionTime'))
+              <p>{{$errors->first('productionTime')}}</p>
+            @endif
           </div>
         </div>
         <br>
@@ -56,6 +41,9 @@
           <div class="d-flex justify-content-center">
               <label for="exampleFormControlFile1">Photo du produit</label>
               <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+              @if ($errors->has('image'))
+                <p>{{$errors->first('image')}}</p>
+              @endif
           </div>
         </div>
         <div class="form-group d-flex justify-content-center">
@@ -81,9 +69,9 @@
                     @endforeach
                   @endforeach
               </select>            
-              <div class="invalid-feedback">
-              Please provide a valid price
-              </div>
+              @if ($errors->has('materiel_1'))
+                <p>{{$errors->first('materiel_1')}}</p>
+              @endif
             </div>
             <div class="form-group col-md-3">
                 <select class="custom-select" name="quantity_1" >
@@ -92,9 +80,9 @@
                       <option  value="{{$i}}">{{$i}}</option>
                     @endfor
                 </select>             
-                <div class="invalid-feedback">
-                Please provide a valid time.
-              </div>
+                @if ($errors->has('quantity_1'))
+                  <p>{{$errors->first('quantity_1')}}</p>
+                @endif
             </div>
         </div>
 
@@ -110,6 +98,9 @@
               @endforeach
             @endforeach
           </select>
+          @if ($errors->has('materiel_'.$i))
+            <p>{{$errors->first('materiel_'.$i)}}</p>
+          @endif
         </div>
         <div class="form-group col-md-3">
         <select class="form-control" id="exampleFormControlSelect1" name="quantity_{{$i}}">
@@ -118,6 +109,9 @@
               <option value="{{$j}}" >{{$j}}</option>
             @endfor
           </select>
+          @if ($errors->has('quantity_'.$i))
+            <p>{{$errors->first('quantity_'.$i)}}</p>
+          @endif
         </div>
       </div>
       @endfor
