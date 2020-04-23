@@ -2,8 +2,9 @@
 
 @section('content')
 <h1 class="text-center">Fabric</h1>
+
 <div class="addFormTissus">
-    @include('partials/forms/addFabrics')
+    @include('partials.forms.addFabrics')
 </div>
 <hr>
 <div class="d-flex justify-content-center flex-nowrap">

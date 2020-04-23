@@ -37,7 +37,7 @@ class FabricController extends Controller
             'image' => $image,
             'price' => $request->price,
         ];
-        $response = $fabricRepository->store($params);
+        $response = $fabricRepository->store($params,$request);
 
         return back();
     }

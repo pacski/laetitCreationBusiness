@@ -10,8 +10,15 @@ use App\Toolbox\ResponseManagement;
 
 class FabricRepository extends ResponseManagement
 {
-    public function store(array $params = [])
+    public function store(array $params = [], $request)
     {
+        $request->validate([
+            'name' => ['required'],
+            'image' => ['required'],
+            'quantity' => ['required'],
+            'price' => ['required'],
+        ]);
+
         Fabric::create([
             'name' => $params['name'],
             'image' => $params['image'],
