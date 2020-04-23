@@ -32,5 +32,6 @@
     <script>
         @include('pages.js')
     </script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
