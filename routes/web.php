@@ -51,3 +51,11 @@ Route::prefix('/command')->group(function (){
     Route::post('delete', 'CommandController@delete')
         ->name('pages.command.delete');
 });
+
+// test vue js
+Route::prefix('/user')->group(function (){
+    Route::post('/create', 'UserController@create')
+        ->name('users.create');
+    Route::get('/index', 'UserController@index')
+        ->name('users.index');
+});
