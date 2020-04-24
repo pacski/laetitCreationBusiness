@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('stats-month', require('./components/stats-month.vue').default);
 Vue.component('text-form', require('./components/textForm.vue').default);
+Vue.component('stats-year', require('./components/stats-year.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
