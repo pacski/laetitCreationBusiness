@@ -64,4 +64,13 @@ Route::prefix('/user')->group(function (){
 Route::prefix('/stats')->group(function(){
     Route::get('/year', 'StatsController@statsYear')
         ->name('stats.year');
+    Route::get('/product/{product}', 'StatsController@statsProduct')
+        ->name('stats.product');
+    Route::get('/origin', 'StatsController@statsOrigin')
+        ->name('stats.origin');
 });
+
+// list product
+
+Route::get('/listingProduct', 'StatsController@listProduct' )
+    ->name('list.product');

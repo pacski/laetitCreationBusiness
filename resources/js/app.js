@@ -6,6 +6,15 @@
 
 require('./bootstrap');
 
+// boostrap vue package
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+// ---------------------
+
 window.Vue = require('vue');
 
 /**
@@ -23,6 +32,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('stats-month', require('./components/stats-month.vue').default);
 Vue.component('text-form', require('./components/textForm.vue').default);
 Vue.component('stats-year', require('./components/stats-year.vue').default);
+Vue.component('stats-product', require('./components/stats-product.vue').default);
+Vue.component('stats-origin', require('./components/stats-origin.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

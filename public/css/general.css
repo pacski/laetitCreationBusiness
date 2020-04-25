@@ -56,3 +56,14 @@ thead tr th{
 .form-control{
     margin-left: 0%;
 }
+
+/* stats container */
+
+.container-stats{
+    border: solid 10px #efc6cc;
+    width: 50%;
+    margin:10px ;
+    -webkit-box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+    -moz-box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+    box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+}

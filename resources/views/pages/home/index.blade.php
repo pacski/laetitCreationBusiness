@@ -8,6 +8,12 @@
     <text-form></text-form> --}}
     {{-- <text-form  :data-users={{$users}}></text-form> --}}
     <hr>
-    <stats-year></stats-year>
+    <div class="d-flex flex-nowrap">
+            <stats-year></stats-year>
+            <stats-product></stats-product>
+    </div>
+    <div class="d-flex flex-nowrap">
+            <stats-origin></stats-origin>
+    </div>
 </div>
 @endsection
