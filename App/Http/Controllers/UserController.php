@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index(UserRepository $userRepository)
     {
         $record = $userRepository->index();
-        return  $record;
+        return   $record;
         // return view('pages.home.index', 
         // [
         //     'users' => $record,

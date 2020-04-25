@@ -9,8 +9,21 @@ import Chart from 'chart.js';
 
 
 export default {
+    data(){
+        return{
+            statsYear: []
+        }
+
+    },
     
     mounted(){
+        axios.get('/stats/year',this.data)
+        .then(({data}) =>{
+            console.log(data)
+            this.statsYear = data
+        
+
+
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
             // The type of chart we want to create
@@ -21,15 +34,16 @@ export default {
                 labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
                 datasets: [{
                     label: 'My First dataset',
-                    backgroundColor: 'rgb(255, 99, 132)',
+                    // backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45, 78, 64, 23,90, 67]
+                    data: this.statsYear
                 }]
             },
 
             // Configuration options go here
             options: {}
         });
+        })
     }
 
 }

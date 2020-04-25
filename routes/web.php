@@ -59,3 +59,9 @@ Route::prefix('/user')->group(function (){
     Route::get('/index', 'UserController@index')
         ->name('users.index');
 });
+
+
+Route::prefix('/stats')->group(function(){
+    Route::get('/year', 'StatsController@statsYear')
+        ->name('stats.year');
+});
