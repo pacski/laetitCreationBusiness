@@ -34,6 +34,8 @@ Vue.component('text-form', require('./components/textForm.vue').default);
 Vue.component('stats-year', require('./components/stats-year.vue').default);
 Vue.component('stats-product', require('./components/stats-product.vue').default);
 Vue.component('stats-origin', require('./components/stats-origin.vue').default);
+Vue.component('stats-best-product', require('./components/stats-best-product.vue').default);
+Vue.component('stats-keys-figures', require('./components/stats-keys-figures.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

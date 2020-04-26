@@ -67,3 +67,11 @@ thead tr th{
     -moz-box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
     box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
 }
+.little-container{
+    border: solid 10px #efc6cc;
+    margin:10px ;
+    width: 20%;
+    -webkit-box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+    -moz-box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+    box-shadow: -1px 18px 10px 0px rgba(0,0,0,0.67);
+}

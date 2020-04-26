@@ -66,11 +66,20 @@ Route::prefix('/stats')->group(function(){
         ->name('stats.year');
     Route::get('/product/{product}', 'StatsController@statsProduct')
         ->name('stats.product');
-    Route::get('/origin', 'StatsController@statsOrigin')
+    Route::get('/bestProduct', 'StatsController@statsBestProduct')
+        ->name('stats.bestProduct');
+    Route::get('/origin/{month}', 'StatsController@statsOrigin')
         ->name('stats.origin');
+    Route::get('/keysFigures', 'StatsController@keysFigures')
+        ->name('stats.keysFigures');
 });
 
 // list product
 
 Route::get('/listingProduct', 'StatsController@listProduct' )
     ->name('list.product');
+
+// list month
+
+Route::get('/months', 'StatsController@getMonth')
+    ->name('get.month');

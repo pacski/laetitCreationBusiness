@@ -1,71 +1,71 @@
 <template>
   <div class="container-stats rounded d-flex flex-column pt-2 pb-2">
-    <div v-if="loaded">
-        <canvas  class="mx-auto" id="originChart"></canvas>
-    </div>
-    <div class="mx-auto">
-        <b-spinner variant="info" v-if="!loaded" class="m-5" label="Busy"></b-spinner>
+    <origin v-if="loaded" class="w-50 mx-auto mb-3" :options="options" :chart-data="datacollection"></origin>
+    <select v-if="loaded" class="w-50 mx-auto" @change="fillData()"  v-model="selectedMonth" name="" id="">
+        <option :key="month.key" v-for="month in months" :value="month.key" selected>{{month.name}}</option>
+    </select>
+    <div v-if="!loaded" class="mx-auto">
+        <b-spinner variant="info"  class="m-5" label="Busy"></b-spinner>
     </div>
   </div>
 </template>
 
 <script>
+import origin from './charts/origin'
 
 export default {
+    components:{origin},
     data (){
-        return{
-            data: {},
-            label: 'Origine de la vente',
-            loaded: false
+        return {
+            months: {},
+            url: '/stats/origin/DYN_MONTH',
+            date: new Date (),
+            selectedMonth: '',
+            loaded: false,
+            datacollection: null,
+            options: {    
+                title: {
+                    display: true,
+                    text: 'Origine des ventes du mois'
+            }}
         }
     },
-    mounted (){ 
-
-            axios.get('/stats/origin')
-            .then(({data})=> {
-                console.log('stats origin')
-                console.log(data)
-                this.data = data
-                this.loaded = true
-            })
-            .then(() => {
-                this.loadChart()
-            })
-            
-    },
-    computed: {
-
+    mounted (){        
+        this.selectedMonth = this.date.getMonth() + 1
+        this.getMonths()
+        this.fillData()
     },
     methods: {
-        loadChart(){
-            console.log('obs')
-            console.log(this.data)
-            var ctx = document.getElementById('originChart');
-            var myPieChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['vinted', 'instagram', 'etsy'] ,
-                    datasets: [{
-                        backgroundColor: ['rgb(101, 169, 183)', 'rgb(208, 60, 156)', 'rgb(251, 179, 141)'],
-                        data: [this.data.vinted, this.data.instagram, this.data.etsy]
-                    }]
-                },
-                options: { 
-                    title: {
-                        display: true,
-                        text: "Origine des ventes"
-                    },
-                    legend:{
-                        display: false
-                    }
 
-                }
-            });
+        fillData(){         
+            axios.get(this.url.replace('DYN_MONTH', this.selectedMonth))
+            .then(({data})=> {
+            this.datacollection = {
+                labels: ['vinted', 'insta', 'etsy'],
+                datasets: [
+                    {
+                        label: 'Vente',
+                        backgroundColor: ['rgb(101, 169, 183)', 'rgb(208, 60, 156)', 'rgb(251, 179, 141)'],
+                        data: [data.vinted, data.instagram, data.etsy]
+                    },
+                ]
+            }
+            this.loaded = true;
+
+            })
+        },
+        getMonths(){
+            axios.get('/months')
+            .then(({data})=>{
+                this.months = data
+            })
         }
     }
 }
 </script>
 
 <style>
-
+#line-chart{
+    height: 100px
+}
 </style>
