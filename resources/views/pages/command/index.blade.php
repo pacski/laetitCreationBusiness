@@ -16,6 +16,9 @@
   </form>
 </div>
 <br>
+<div id="app">
+  <list-command></list-command>
+</div>
 @include('pages.command.paginate')
 <div class="details-command-container d-none">
   <div class="d-flex">

@@ -55,7 +55,7 @@ export default {
             })
         },
         getMonths(){
-            axios.get('/months')
+            axios.get('/api-tool/months')
             .then(({data})=>{
                 this.months = data
             })

@@ -36,6 +36,7 @@ Vue.component('stats-product', require('./components/stats-product.vue').default
 Vue.component('stats-origin', require('./components/stats-origin.vue').default);
 Vue.component('stats-best-product', require('./components/stats-best-product.vue').default);
 Vue.component('stats-keys-figures', require('./components/stats-keys-figures.vue').default);
+Vue.component('list-command', require('./components/list-command.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

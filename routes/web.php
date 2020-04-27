@@ -61,7 +61,7 @@ Route::prefix('/user')->group(function (){
 });
 
 
-Route::prefix('/stats')->group(function(){
+Route::namespace('API')->prefix('/stats')->group(function(){
     Route::get('/year', 'StatsController@statsYear')
         ->name('stats.year');
     Route::get('/product/{product}', 'StatsController@statsProduct')
@@ -76,10 +76,16 @@ Route::prefix('/stats')->group(function(){
 
 // list product
 
-Route::get('/listingProduct', 'StatsController@listProduct' )
-    ->name('list.product');
+
 
 // list month
 
-Route::get('/months', 'StatsController@getMonth')
+
+
+Route::namespace('API')->prefix('/api-tool')->group(function(){
+    Route::get('/listingProduct', 'StatsController@listProduct' )
+    ->name('list.product');
+    Route::get('/months', 'StatsController@getMonth')
     ->name('get.month');
+});
+
