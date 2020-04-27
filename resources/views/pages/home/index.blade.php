@@ -11,20 +11,15 @@
         <div class="d-flex flex-nowrap">
                 <stats-keys-figures></stats-keys-figures>
         </div>
-        <div class="d-flex flex-nowrap">
+        <div class="d-flex flex-nowrap" >
                 <stats-product></stats-product>
-        </div>
-        {{-- <div class="d-flex flex-nowrap">
-                <stats-best-product></stats-best-product>
-        </div> --}}
-        {{-- <div class="d-flex flex-nowrap">
-        </div> --}}
-
-        {{-- <div class="d-flex flex-nowrap">
                 <stats-year></stats-year>
-                <stats-origin></stats-origin>
         </div>
-  --}}
+        <div class="d-flex flex-nowrap">
+                <stats-origin></stats-origin>
+                <stats-best-product></stats-best-product>
+        </div>
+ 
 
 </div>
 @endsection

@@ -19,7 +19,8 @@
           title: {
             display: true,
             text: 'blabla'
-          }
+          },
+          maintainAspectRatio: false
         }
       }
     },

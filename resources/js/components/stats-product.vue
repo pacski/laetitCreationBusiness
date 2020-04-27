@@ -1,6 +1,6 @@
 <template>
-  <div class="container-stats rounded d-flex flex-column pt-2 pb-2 h-50">
-      <div class="stats">
+<div class="container-stats rounded d-flex flex-column pt-2 pb-2 h-50">
+      <div>
         <product-year :styles="myStyles" v-if="loaded" :options="options" :chart-data="datacollection" ></product-year>
       </div>
     <div v-if="loaded" class="input-group mb-3 w-50 mx-auto">
@@ -14,7 +14,7 @@
     <div class="mx-auto">
         <b-spinner variant="info" v-if="!loaded" class="m-5" label="Busy"></b-spinner>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -30,9 +30,15 @@ export default {
             title: 'Vente de DYN_PRODUCT en 2020',
             label: 'quantité vendu',
             loaded: false,
-            options:{},
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: "Vente de produit en 2020"
+                }
+            },
             datacollection: null,
-            height: 100,
         }
     },
     mounted(){
@@ -43,10 +49,7 @@ export default {
     computed: {
         myStyles(){
             return {
-                // height: '200px',
-                // width: '100%',
-                // // position: 'block',
-                // display: 'block'
+                height: '250px',
             }
         }
     },
@@ -60,7 +63,7 @@ export default {
                 datasets: [
                     {
                         label: this.label.replace('DYN_PRODUCT', this.selectedProduct),
-                        // backgroundColor: ['rgb(101, 169, 183)', 'rgb(208, 60, 156)', 'rgb(251, 179, 141)'],
+                        borderColor: 'rgb(255, 99, 132)',
                         data: data
                     },
                 ]
