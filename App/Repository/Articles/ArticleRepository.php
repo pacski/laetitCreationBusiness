@@ -4,6 +4,7 @@ namespace App\Repository\Articles;
 
 use App\Entity\Article;
 use App\Entity\Product;
+use App\Entity\Fabric;
 use App\Toolbox\ResponseManagement;
 
 
@@ -16,6 +17,7 @@ class ArticleRepository extends ResponseManagement
        foreach ($products as $key => $item) {
 
                 $product = Product::where('name', $item->name)->first();
+                $fabric = Fabric::where('name', $item->tissu)->first();
 
                 if (isset($product)){
                 Article::create([
@@ -25,6 +27,7 @@ class ArticleRepository extends ResponseManagement
                     "fabricName" => $item->tissu,
                     "price" => $product->price,
                     "image" => $product->image,
+                    "fabricImage" => $fabric->image,
                 ]);
 
             }

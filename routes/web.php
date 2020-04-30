@@ -74,6 +74,14 @@ Route::namespace('API')->prefix('/stats')->group(function(){
         ->name('stats.keysFigures');
 });
 
+Route::namespace('API')->prefix('/api')->group(function(){
+    Route::get('/commands', 'ApiCommandController@getCommands')
+        ->name('api.commands');
+    Route::post('/commands/{number}/{status}', 'ApiCommandController@changeStatus')
+        ->name('api.commands.change-status');
+
+});
+
 // list product
 
 

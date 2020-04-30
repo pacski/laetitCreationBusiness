@@ -29,14 +29,14 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('stats-month', require('./components/stats-month.vue').default);
+Vue.component('stats-month', require('./components/statistiques/stats-month.vue').default);
 Vue.component('text-form', require('./components/textForm.vue').default);
-Vue.component('stats-year', require('./components/stats-year.vue').default);
-Vue.component('stats-product', require('./components/stats-product.vue').default);
-Vue.component('stats-origin', require('./components/stats-origin.vue').default);
-Vue.component('stats-best-product', require('./components/stats-best-product.vue').default);
-Vue.component('stats-keys-figures', require('./components/stats-keys-figures.vue').default);
-Vue.component('list-command', require('./components/list-command.vue').default);
+Vue.component('stats-year', require('./components/statistiques/stats-year.vue').default);
+Vue.component('stats-product', require('./components/statistiques/stats-product.vue').default);
+Vue.component('stats-origin', require('./components/statistiques/stats-origin.vue').default);
+Vue.component('stats-best-product', require('./components/statistiques/stats-best-product.vue').default);
+Vue.component('stats-keys-figures', require('./components/statistiques/keys-figures/stats-keys-figures.vue').default);
+Vue.component('list-command', require('./components/list-commandes/list-command.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
