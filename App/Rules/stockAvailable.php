@@ -85,7 +85,7 @@ class stockAvailable implements Rule
 
                 array_push($details, $materiels);
 
-                $materiels = $objMateriels;
+                // $materiels = $objMateriels;
 
                 $objDetails->name = $product->name;
                 $objDetails->fabric = $theFabric;
@@ -113,12 +113,13 @@ class stockAvailable implements Rule
 
             if ($product->fabric->validation)
             {
+                $nbTrue = 0;
+
                 foreach ($product->materiels as $key => $materiel) {
 
                     if ($materiel->validation)
                     {
-                        return true;
-                        break;
+                        $nbTrue = $nbTrue + 1;
                     }
                     else
                     {   
@@ -126,6 +127,11 @@ class stockAvailable implements Rule
                         return false;
                         break;
                     }
+
+                }
+                if ($nbTrue == count($product->materiels) )
+                {
+                    return true;
                 }
             }
             else
