@@ -116,7 +116,7 @@ export default {
       },
       changeStatus(data){
         console.log(data)
-        axios.post('/api/commands/'+data.number+'/'+this.status, 'status' )
+        axios.post('/api/command/'+data.number+'/'+this.status, 'status' )
         .then(({data})=> {
           console.log('change')
           console.log(this.status)

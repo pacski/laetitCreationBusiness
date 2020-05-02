@@ -16,9 +16,11 @@ class StockRepository extends ResponseManagement
             'name' => $params['name'],
             'quantity' => $params['quantity'],
             'quantity_type' => $params['quantity_type'],
+            'quantity_buyed' => $params['quantity'],
             'image' => $params['image'],
             'type' => $params['type'],
             'price' => $params['price'],
+            'total_expense' => $params['price'],
          ]);
  
 
@@ -43,7 +45,7 @@ class StockRepository extends ResponseManagement
 
     public function list()
     {
-        $stocks = Stock::all();
+        $stocks = Stock::orderBy('type')->get();
         return $stocks;
     }
 

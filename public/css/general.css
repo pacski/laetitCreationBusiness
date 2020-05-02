@@ -31,15 +31,20 @@ tr:hover{
     text-align:center;
 }
 
-.btn{
+.btn-pink{
     background-color: #efc6cc;
     border: #efc6cc;
     color: black;
+    border-radius: 5px;
+    border:none;
+    height: 30px;
 }
 
-.btn:hover{
+.btn-pink:hover{
     background-color: #b86f7a;
+    border: none
 }
+
 
 thead tr th{
     color: #b86f7a;

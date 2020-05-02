@@ -155,7 +155,8 @@
           </div>
         </div>
         
-        <button class="btn btn-primary mx-auto" style="width:100%" type="submit">Ajouter commande</button>
+        <button class="btn-pink mx-auto" style="width:100%" type="submit">Ajouter commande</button>
+        
       </form>
       @if ($errors->has('stocks'))
         <p>{{$errors->first('stocks')}}</p>

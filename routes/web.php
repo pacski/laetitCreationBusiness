@@ -75,11 +75,18 @@ Route::namespace('API')->prefix('/stats')->group(function(){
 });
 
 Route::namespace('API')->prefix('/api')->group(function(){
-    Route::get('/commands', 'ApiCommandController@getCommands')
-        ->name('api.commands');
-    Route::post('/commands/{number}/{status}', 'ApiCommandController@changeStatus')
-        ->name('api.commands.change-status');
-
+    Route::prefix('/command')->group(function(){
+        Route::get('', 'ApiCommandController@getCommands')
+            ->name('api.commands');
+        Route::post('/{number}/{status}', 'ApiCommandController@changeStatus')
+            ->name('api.commands.change-status');
+    });
+    Route::prefix('/stock')->group(function(){
+        Route::post('/addStock', 'ApiStockController@addStock')
+            ->name('api.stocks.addStock'); 
+        Route::get('/getAllType', 'ApiStockController@getAllType')
+            ->name('api.stocks.getAllType');
+    });
 });
 
 // list product

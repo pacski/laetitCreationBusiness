@@ -106,7 +106,7 @@ export default {
       }
     },
     mounted(){
-      axios.get('/api/commands')
+      axios.get('/api/command')
       .then(({data})=> {
         this.items = [{}],
         this.commands = data          
