@@ -8,7 +8,7 @@ use App\Entity\Command;
 
 class ApiCommandController extends Controller
 {
-    public function getCommands ()
+    public function index ()
     {
         $record = Command::
             with('articles')

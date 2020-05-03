@@ -12,13 +12,11 @@ class StockController extends Controller
     {
         $stocks = $stockRepository->listByType();
         $quantityType = $stockRepository->quantityTypeCount();
-        $stock = $stockRepository->list();
 
 
         return view('pages.stock.index', [
             'stocks' => $stocks,
             'quantityType' => $quantityType,
-            'stock' => $stock,
             ]);
     }
 

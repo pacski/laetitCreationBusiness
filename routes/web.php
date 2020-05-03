@@ -76,16 +76,27 @@ Route::namespace('API')->prefix('/stats')->group(function(){
 
 Route::namespace('API')->prefix('/api')->group(function(){
     Route::prefix('/command')->group(function(){
-        Route::get('', 'ApiCommandController@getCommands')
-            ->name('api.commands');
+        Route::get('', 'ApiCommandController@index')
+            ->name('api.commands.index');
         Route::post('/{number}/{status}', 'ApiCommandController@changeStatus')
             ->name('api.commands.change-status');
     });
     Route::prefix('/stock')->group(function(){
+        Route::get('', 'ApiStockController@index')
+            ->name('api.stocks.index'); 
         Route::post('/addStock', 'ApiStockController@addStock')
             ->name('api.stocks.addStock'); 
+        Route::post('/delete/{id}', 'ApiStockController@delete')
+            ->name('api.stocks.delete'); 
         Route::get('/getAllType', 'ApiStockController@getAllType')
             ->name('api.stocks.getAllType');
+    });
+    Route::prefix('/fabric')->group(function(){
+        Route::get('', 'ApiFabricController@index')
+            ->name('api.fabrics.index'); 
+        Route::post('/delete/{id}', 'ApiFabricController@delete')
+            ->name('api.fabrics.delete'); 
+ 
     });
 });
 

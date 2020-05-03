@@ -9,6 +9,12 @@ use App\Entity\Stock;
 
 class ApiStockController extends Controller
 {
+    public function index()
+    {
+        $stocks = Stock::orderBy('type')->get();
+        return $stocks;
+    }
+
     public function addStock(Request $request)
     {
         $stock = Stock::where('name', $request->name)->first();
@@ -26,5 +32,10 @@ class ApiStockController extends Controller
             ->get();
 
         return $record;
+    }
+    
+    public function delete($id)
+    {
+        Stock::where('id', $id)->delete();
     }
 }

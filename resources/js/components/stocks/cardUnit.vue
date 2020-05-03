@@ -1,6 +1,5 @@
 <template>
     <b-card
-        
         :title="this.stock.name"
         :img-src="'images/Stock/'+this.stock.image"
         :img-width="250"
@@ -11,7 +10,7 @@
         style="max-width: 20rem; height:20%"
         class="mb-2 m-3 text-center"
     >
-        <b-tabs content-class="mt-3">
+        <b-tabs content-class="mt-3" align="center">
             <b-tab title="Informations" active>
                 <p>Type :<span> {{this.stock.type}}</span></p>
                 <p>Dépense :<span> {{this.totalExpense}} €</span></p>
@@ -41,21 +40,10 @@ export default {
             quantityAdd: '',
             price:'',
             totalExpense: this.stock.total_expense,
-            visible:true,
             checkBox: []
         }
     },
     mounted(){
-        console.log(this.selected)
-        console.log('selected')
-        console.log(this.stock.type)
-        console.log('type')
-        if (this.selected == this.stock.type || this.selected == null)
-        {
-            this.visible = true
-        }else{
-            this.visible = false
-        }
     },
     methods:{
         progressBar(quantity, max){
@@ -82,16 +70,6 @@ export default {
                 this.totalExpense = this.totalExpense + parseInt(this.price)
             })
         },
-        filter(types){
-            this.types.forEach(element => {
-                    if ( 1 == 1){
-                        return true
-                    }else{
-                        return false
-                    }
-            });
-            // return true
-        }
     },
 }
 </script>

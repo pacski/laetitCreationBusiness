@@ -23,14 +23,14 @@ class FabricController extends Controller
     {
         if ($request->file('image') != null )
         {
-            $image = $storeImage->store($request->file('image'), "Fabric");
+            $image = $storeImage->store($request->file('image'), 'Fabric');
         }
         else
         {
             $image = null ;
         }
+ 
 
-        
         $params = [
             'name' => $request->name,
             'quantity' => $request->quantity,

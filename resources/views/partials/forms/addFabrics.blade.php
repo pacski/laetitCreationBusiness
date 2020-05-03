@@ -1,4 +1,4 @@
-<form class="needs-validation px-2 pb-2" action="{{route('pages.fabric.create')}}" method="post" novalidate>
+<form class="needs-validation px-2 pb-2" action="{{route('pages.fabric.create')}}" method="post"  enctype="multipart/form-data" novalidate>
     @csrf
 
         <div class="form-row">
@@ -29,7 +29,7 @@
        
         <div class="form-group">
             <label for="exampleFormControlFile1">Photo du tissus</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" value="{{old('image')}}"  name="image">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
             @if ($errors->has('image'))
               <p>{{$errors->first('image')}}</p>
           @endif

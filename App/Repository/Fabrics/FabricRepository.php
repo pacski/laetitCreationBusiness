@@ -14,7 +14,7 @@ class FabricRepository extends ResponseManagement
     {
         $request->validate([
             'name' => ['required'],
-            'image' => ['required'],
+            // 'image' => ['image'],
             'quantity' => ['required'],
             'price' => ['required'],
         ]);

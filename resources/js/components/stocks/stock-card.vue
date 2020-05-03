@@ -25,24 +25,27 @@ import cardUnit from './cardUnit'
 
 export default {
     components: {cardUnit},
-    props:['stocks'],
 
     data(){
         return {
-            color: '',
-            value: '',
+            data:[],
             selected: [],
             options: [],
         }
     },
     computed:{
         filterStock: function (){
-            return this.stocks.filter((item)=>{
+            return this.data.filter((item)=>{
                 return item.type.match(this.selected)
             })
         }
     },
     mounted(){
+        axios.get('/api/stock')
+        .then(({data})=>{
+            this.data = data
+        })
+
         axios.get('/api/stock/getAllType')
         .then(({data})=>{
             console.log(data)

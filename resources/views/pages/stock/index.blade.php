@@ -7,7 +7,7 @@
 </div>
 <hr>
 <div id="app">
-  <stock-card :stocks="{{$stock}}"></stock-card>
+  <stock-card></stock-card>
 </div>
 {{-- @foreach ($stocks as $item)
   <h1 class="text-center">{{$item[0]->type}}</h1>
