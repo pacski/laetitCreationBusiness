@@ -98,6 +98,14 @@ Route::namespace('API')->prefix('/api')->group(function(){
             ->name('api.fabrics.delete'); 
  
     });
+    Route::prefix('/product')->group(function(){
+        Route::get('', 'ApiProductController@index')
+            ->name('api.products.index'); 
+        Route::get('/countProduct/{name}', 'ApiProductController@nbProduced')
+            ->name('api.products.nbProduced'); 
+     
+ 
+    });
 });
 
 // list product

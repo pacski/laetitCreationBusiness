@@ -39,6 +39,7 @@ Vue.component('stats-keys-figures', require('./components/statistiques/keys-figu
 Vue.component('list-command', require('./components/list-commandes/list-command.vue').default);
 Vue.component('stock-card', require('./components/stocks/stock-card.vue').default);
 Vue.component('fabric-card', require('./components/fabrics/fabric-card.vue').default);
+Vue.component('product-card', require('./components/products/product-card.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

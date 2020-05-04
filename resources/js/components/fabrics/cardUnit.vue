@@ -9,7 +9,7 @@
     img-top
     tag="article"
     style="max-width: 20rem; height:20%"
-    class="mb-2 m-3 text-center card"
+    class="mb-2 m-3 text-center card-fabric"
   >
     <b-progress :max="maxQuantity" :variant="progressBar(currentQuantity, maxQuantity)" show-progress animated>
         <b-progress-bar :value="currentQuantity" :label="`${currentQuantity} / ${maxQuantity}`"></b-progress-bar>
@@ -64,9 +64,10 @@ export default {
 </script>
 
 <style>
-.card{
-    width: 250px;
+.card-fabric{
+    width: 250px
 }
+
 .btn-delete{
     padding-top:2px;
 }

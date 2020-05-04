@@ -3,7 +3,7 @@
             <div class="d-flex justify-content-end">
               <b-button size="sm" @click="row.toggleDetails">X</b-button>
             </div>
-            <b-tabs content-class="mt-3" justified>
+            <b-tabs content-class="mt-3" >
               <b-tab title="Informations" active>
                 <b-row class="mb-2">
                   <b-col sm="3" class="text-sm-right"><b>Numéro de commande:</b></b-col>

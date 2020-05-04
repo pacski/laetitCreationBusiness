@@ -4,6 +4,10 @@
 <h1 class="text-center">Liste produits</h1>
 @include('partials.forms.addProducts')
 <hr>
+<div id="app">
+  <product-card></product-card>
+</div>
+<hr>
 <div class="table-responsive text-nowrap d-flex justify-content-center flex-wrap">
 
         @foreach ($products as $product)
