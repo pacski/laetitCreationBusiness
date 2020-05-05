@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','GeneralController@index')
+Route::get('/','GeneralController@index')->middleware('auth')
     ->name('pages.home.index');
 
 Route::prefix('/product')->group(function (){
@@ -115,3 +115,7 @@ Route::namespace('API')->prefix('/api-tool')->group(function(){
     ->name('get.month');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

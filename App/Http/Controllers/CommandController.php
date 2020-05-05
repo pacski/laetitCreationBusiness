@@ -15,6 +15,11 @@ use App\Entity\Fabric;
 
 class CommandController extends Controller
 {
+     public function __construct()
+     {
+          $this->middleware('auth');
+     }
+     
     public function index(ProductRepository $productRepository, 
     FabricRepository $fabricRepository, CommandRepository $commandRepository)
     {
