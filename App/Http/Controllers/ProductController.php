@@ -12,6 +12,11 @@ use \stdClass;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+         $this->middleware('auth');
+    }
+    
     public function index(ProductRepository $productRepository, 
     StockRepository $stockRepository)
     {

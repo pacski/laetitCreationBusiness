@@ -1,7 +1,7 @@
 @extends('layouts/application')
 
 @section('content')
-<h1>Accueil</h1>
+<h1>Accueil de </h1>
 <div id="app" class="d-flex- flex-nowrap">
     {{-- <example-component></example-component> --}}
     {{-- <stats-month></stats-month> --}}

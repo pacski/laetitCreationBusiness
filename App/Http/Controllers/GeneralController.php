@@ -10,6 +10,11 @@ use App\Repository\Users\UserRepository;
 
 class GeneralController extends Controller
 {
+    public function __construct()
+    {
+         $this->middleware('auth');
+    }
+    
     public function index(UserRepository $userRepository)
     {
         // $products = $productRepository->list();
