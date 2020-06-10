@@ -9,9 +9,11 @@ use App\Entity\Command;
 class ApiCommandController extends Controller
 {
     public function index ()
-    {
-        $record = Command::
-            with('articles')
+    {   
+        $userId = \Auth::id();
+
+        $record = Command::with('articles')
+            ->where('user_id', $userId)
             ->get();
 
         return $record;

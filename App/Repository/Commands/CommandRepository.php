@@ -13,9 +13,6 @@ use App\Repository\Products\ProductRepository;
 
 use App\Rules\stockAvailable;
 
-
-
-
 class CommandRepository extends ResponseManagement
 {
     public function create(array $params = [], $request)
@@ -46,6 +43,7 @@ class CommandRepository extends ResponseManagement
         }
  
         Command::create([
+            'user_id' => $params['user_id'],
             'number' => $number,
             'origin' =>$params['origin'],
             'fname' =>$params['fname'],
@@ -57,11 +55,9 @@ class CommandRepository extends ResponseManagement
         ]);
     }
 
-    public function list()
+    public function list($id)
     {
-       
-        $records = Command::paginate(10);
-
+        $records = Command::where('user_id', $id)->paginate(10);
         return $records;
     }
 

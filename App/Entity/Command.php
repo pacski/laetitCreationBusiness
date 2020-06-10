@@ -9,11 +9,15 @@ class Command extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['number', 'origin', 'fname', 'lname', 'adress', 'postalCode',
+    protected $fillable = ['user_id', 'number', 'origin', 'fname', 'lname', 'adress', 'postalCode',
          'city', 'status', 'comment'];
 
     public function articles ()
     {
-             return $this->hasMany('App\Entity\Article');
+        return $this->hasMany('App\Entity\Article');
+    }
+    public function user ()
+    {
+        return $this->belongsTo('App\Entity\User');
     }
 }

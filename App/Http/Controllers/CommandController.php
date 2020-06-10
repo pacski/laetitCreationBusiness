@@ -23,28 +23,30 @@ class CommandController extends Controller
     public function index(ProductRepository $productRepository, 
     FabricRepository $fabricRepository, CommandRepository $commandRepository)
     {
-        $products = $productRepository->list();
-        $fabrics = $fabricRepository->list();
-        $commands = $commandRepository->list();
+          $userId = \Auth::id();
+
+          $products = $productRepository->list();
+          $fabrics = $fabricRepository->list();
+          $commands = $commandRepository->list($userId);
+     
+
+     //    $test = new \stdClass();
+
+     //   for ($i=1; $i < 10; $i++) { 
+     //        $product = "product-".$i;
+     //        $secondObject =  new \stdClass();
+     //        $test->$product = $secondObject;
+
+     //        $productName = "product-".$i;
+     //        $productQuantity = "quantity-".$i;
+     //        $productTissu = "tissu-".$i;
+
+     //        $secondObject->name = $productName;
+     //        $secondObject->quantity = $productQuantity;
+     //        $secondObject->tissu = $productTissu;
 
 
-        $test = new \stdClass();
-
-       for ($i=1; $i < 10; $i++) { 
-            $product = "product-".$i;
-            $secondObject =  new \stdClass();
-            $test->$product = $secondObject;
-
-            $productName = "product-".$i;
-            $productQuantity = "quantity-".$i;
-            $productTissu = "tissu-".$i;
-
-            $secondObject->name = $productName;
-            $secondObject->quantity = $productQuantity;
-            $secondObject->tissu = $productTissu;
-
-
-       }
+     //   }
      //   \Debugbar::info($test);
      //   $product = Product::where('name', 'produit 4')->first();
 
@@ -117,6 +119,7 @@ class CommandController extends Controller
      }
 
      $params = [
+          'user_id' => \Auth::id(),
           'lname' => $request->lname,
           'fname' => $request->fname,
           'adresse' => $request->adresse,
