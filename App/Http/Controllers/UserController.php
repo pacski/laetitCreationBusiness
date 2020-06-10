@@ -16,11 +16,9 @@ class UserController extends Controller
     public function index(UserRepository $userRepository)
     {
         $record = $userRepository->index();
-        return   $record;
-        // return view('pages.home.index', 
-        // [
-        //     'users' => $record,
-        // ]); 
+        return view('pages.user.index',[
+            'users' => $record,
+        ]); 
     }
 
     public function create (Request $request, UserRepository $userRepository)
