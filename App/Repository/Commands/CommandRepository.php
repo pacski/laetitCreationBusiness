@@ -55,15 +55,15 @@ class CommandRepository extends ResponseManagement
         ]);
     }
 
-    public function list($id)
+    public function list($userId)
     {
-        $records = Command::where('user_id', $id)->paginate(10);
+        $records = Command::where('user_id', $userId)->paginate(10);
         return $records;
     }
 
-    public function showLast(){
+    public function showLast($userId){
 
-        $command = Command::orderBy('created_at', 'desc')->first();
+        $command = Command::where('user_id', $userId)->orderBy('created_at', 'desc')->first();
         return $command;
     }
 

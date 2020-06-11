@@ -37,19 +37,19 @@ class FabricRepository extends ResponseManagement
         return $record;
     }
 
-    public function stockAfterCommand(object $products)
+    public function stockAfterCommand(object $products, int $userId)
     {
 
         foreach ($products as $key => $item) {
 
-            $product = Product::where('name', $item->name)->first();
+            $product = Product::where('user_id', $userId)->where('name', $item->name)->first();
 
-            $fabric = Fabric::where('name', $item->tissu)->first();
+            $fabric = Fabric::where('user_id', $userId)->where('name', $item->tissu)->first();
             if (isset($product) && isset($fabric) )
             {
                 $stockTotal = $fabric->quantity - $product->cost * $item->quantity;
 
-                Fabric::where('name', $item->tissu)->update([
+                Fabric::where('user_id', $userId)->where('name', $item->tissu)->update([
                     'quantity' => $stockTotal
                 ]);       
             }

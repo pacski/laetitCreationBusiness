@@ -55,12 +55,12 @@ class StockRepository extends ResponseManagement
         return $quantityType;
     }
 
-    public function stockAfterCommand(object $products)
+    public function stockAfterCommand(object $products, int $userId)
     {
 
         foreach ($products as $key => $item) {
 
-            $product = Product::where('name', $item->name)->first();
+            $product = Product::where('user_id', $userId)->where('name', $item->name)->first();
 
             if (isset($product->stocks))
             {
@@ -71,6 +71,9 @@ class StockRepository extends ResponseManagement
                     $materiel = Stock::where('name', $materielName)->first();
                     $stockTotal = $materiel->quantity - $stock->pivot->quantity * $item->quantity;
     
+                    // Stock::where('user_id', $userId)->where('name', $materielName)->update([
+                    //     'quantity' => $stockTotal 
+                    // ]);
                     Stock::where('name', $materielName)->update([
                         'quantity' => $stockTotal 
                     ]);

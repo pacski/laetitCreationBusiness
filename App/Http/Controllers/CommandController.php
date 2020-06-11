@@ -25,8 +25,8 @@ class CommandController extends Controller
     {
           $userId = \Auth::id();
 
-          $products = $productRepository->list();
-          $fabrics = $fabricRepository->list();
+          $products = $productRepository->list($userId);
+          $fabrics = $fabricRepository->list($userId);
           $commands = $commandRepository->list($userId);
      
 
@@ -90,13 +90,13 @@ class CommandController extends Controller
     ArticleRepository $articleRepository, StockRepository $stockRepository,
     FabricRepository $fabricRepository, ProductRepository $productRepository )
     {
-     
+     $userId = \Auth::id();
      $productArray = [];
      $products = new \stdClass();
 
-     $nbProducts = count($productRepository->list());
+     $nbProducts = count($productRepository->list($userId));
 
-     for ($i=1; $i < $nbProducts; $i++) {
+     for ($i=1; $i <= $nbProducts; $i++) {
 
           $product = "product-".$i;
           $secondObject =  new \stdClass();
@@ -119,7 +119,7 @@ class CommandController extends Controller
      }
 
      $params = [
-          'user_id' => \Auth::id(),
+          'user_id' => $userId,
           'lname' => $request->lname,
           'fname' => $request->fname,
           'adresse' => $request->adresse,
@@ -130,10 +130,10 @@ class CommandController extends Controller
      ];
 
      $commandRepository->create($params, $request);
-     $command = $commandRepository->showLast();
-     $articleRepository->create($command,  $products);
-     $stockRepository->stockAfterCommand($products);
-     $fabricRepository->stockAfterCommand($products);
+     $command = $commandRepository->showLast($userId);
+     $articleRepository->create($command,  $products, $userId);
+     $stockRepository->stockAfterCommand($products, $userId);
+     $fabricRepository->stockAfterCommand($products, $userId);
 
 
 

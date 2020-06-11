@@ -18,11 +18,12 @@ class stockAvailable implements Rule
      */
     public function __construct(ProductRepository $productRepository, $request)
     {
-        $this->nbProducts = count($productRepository->list());
+        $this->userId = \Auth::id();
+        $this->nbProducts = count($productRepository->list($this->userId));
         $this->products = [];
         $this->objProducts = new \stdClass();
 
-        for ($i = 1; $i < $this->nbProducts; $i++) { 
+        for ($i = 1; $i <= $this->nbProducts; $i++) { 
             $details = [];
             $objDetails= new \stdClass();
 

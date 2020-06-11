@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'image', 'cost', 'price', 'productionTime'];
+    protected $fillable = ['user_id', 'name', 'image', 'cost', 'price', 'productionTime'];
 
     public function article ()
     {
@@ -16,6 +16,10 @@ class Product extends Model
     public function stocks()
     {
         return $this->belongsToMany('App\Entity\Stock')->withPivot('quantity');
+    }
+    public function user()
+    {
+        return $this->belongsToMany('App\Entity\Stock');
     }
     
 }

@@ -45,4 +45,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Entity\Fabric');
     }
+    public function products()
+    {
+        return $this->hasMany('App\Entity\Product');
+    }
 }

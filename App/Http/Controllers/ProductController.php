@@ -20,8 +20,10 @@ class ProductController extends Controller
     public function index(ProductRepository $productRepository, 
     StockRepository $stockRepository)
     {
-        $products = $productRepository->list();
-        $stocks = $stockRepository->list();
+        $userId = \Auth::id();
+
+        $products = $productRepository->list($userId);
+        $stocks = $stockRepository->list($userId);
 
         $stocksTest = $stockRepository->listByType();
 
@@ -46,6 +48,7 @@ class ProductController extends Controller
         }
         
         $params = [
+            'user_id' => \Auth::id(),
             'name' => $request->name,
             'cost' => $request->cost,
             'price' => $request->price,

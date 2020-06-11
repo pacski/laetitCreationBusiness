@@ -11,13 +11,11 @@ use App\Toolbox\ResponseManagement;
 
 class ArticleRepository extends ResponseManagement
 {
-    public function create( $command, object $products)
+    public function create( $command, object $products, int $userId)
     {
-        
        foreach ($products as $key => $item) {
-
-                $product = Product::where('name', $item->name)->first();
-                $fabric = Fabric::where('name', $item->tissu)->first();
+                $product = Product::where('user_id', $userId)->where('name', $item->name)->first();
+                $fabric = Fabric::where('user_id', $userId)->where('name', $item->tissu)->first();
 
                 if (isset($product)){
                 Article::create([

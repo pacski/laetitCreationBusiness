@@ -18,12 +18,13 @@ class ProductRepository extends ResponseManagement
             'cost' => 'required',
             'price' => 'required',
             'productionTime' => 'required',
-            'image' => ['required'],
+            'image' => 'required',
             'materiel_1' => ['required'],
             'quantity_1' => ['required']
         ]);
 
         Product::create([
+            'user_id' => $params['user_id'],
            'name' => $params['name'],
            'image' => $params['image'],
            'cost' => $params['cost'],
@@ -37,15 +38,15 @@ class ProductRepository extends ResponseManagement
 
                 $materielId = $materiel->id;
 
-                $product = Product::where('name', $params['name'])->first();
+                $product = Product::where('user_id', $$params['user_id'])->where('name', $params['name'])->first();
                 $product->stocks()->attach($materielId, ['quantity' => $materiel->quantity ]);
             }
         }
     }
 
-    public function list()
+    public function list($userId)
     {
-        $products = Product::all();
+        $products = Product::where('user_id', $userId)->get();
         return $products;
     }
 
