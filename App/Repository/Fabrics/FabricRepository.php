@@ -20,6 +20,7 @@ class FabricRepository extends ResponseManagement
         ]);
 
         Fabric::create([
+            'user_id' => $params['user_id'],
             'name' => $params['name'],
             'image' => $params['image'],
             'quantity' => $params['quantity'],
@@ -29,9 +30,9 @@ class FabricRepository extends ResponseManagement
        
     }
 
-    public function list()
+    public function list($userId)
     {
-        $record = Fabric::all();
+        $record = Fabric::where('user_id', $userId)->get();
 
         return $record;
     }

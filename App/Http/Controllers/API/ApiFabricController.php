@@ -10,7 +10,8 @@ class ApiFabricController extends Controller
 {
     public function index ()
     {
-        $record = Fabric::all();
+        $userId = \Auth::id();
+        $record = Fabric::where('user_id', $userId)->get();
         return $record;
     }
 
