@@ -25,7 +25,7 @@ class ProductController extends Controller
         $products = $productRepository->list($userId);
         $stocks = $stockRepository->list($userId);
 
-        $stocksTest = $stockRepository->listByType();
+        $stocksTest = $stockRepository->listByType($userId);
 
 
         return view('pages.product.index', [
@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         if ($request->file('image') != null )
         {
-            $image = $storeImage->store($request->file('image'), "Product");
+            $image = $storeImage->store($request->file('image'), 'Product');
         }
         else
         {

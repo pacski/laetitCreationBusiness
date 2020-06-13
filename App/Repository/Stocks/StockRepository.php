@@ -13,6 +13,7 @@ class StockRepository extends ResponseManagement
     public function store(array $params = [])
     {
         Stock::create([
+            'user_id' => $params['user_id'],
             'name' => $params['name'],
             'quantity' => $params['quantity'],
             'quantity_type' => $params['quantity_type'],
@@ -26,32 +27,32 @@ class StockRepository extends ResponseManagement
 
     }
 
-    public function listByType()
+    public function listByType($userId = null)
     {
-        $type = Stock::select('type')->distinct()->get();
-        $typeNb = Stock::select('type')->distinct()->get()->count();
+        $type = Stock::where('user_id', $userId)->select('type')->distinct()->get();
+        $typeNb = Stock::where('user_id', $userId)->select('type')->distinct()->get()->count();
 
         $object = new stdClass();
 
         for ($i=0; $i < $typeNb; $i++) 
         { 
             $field = $type[$i]->type;
-            $object->$field = Stock::where('type', $field)->get();
+            $object->$field = Stock::where('user_id', $userId)->where('type', $field)->get();
         }
         $type = $object;
 
         return $type;
     }
 
-    public function list()
+    public function list($userId = null)
     {
-        $stocks = Stock::orderBy('type')->get();
+        $stocks = Stock::where('user_id', $userId)->orderBy('type')->get();
         return $stocks;
     }
 
-    public function quantityTypeCount()
+    public function quantityTypeCount($userId = null)
     {
-        $quantityType = Stock::select('quantity_type')->distinct()->get();
+        $quantityType = Stock::where('user_id', $userId)->select('quantity_type')->distinct()->get();
         return $quantityType;
     }
 
@@ -68,13 +69,13 @@ class StockRepository extends ResponseManagement
                 {
                     $materielName = $stock->name;
                     $materielQuantity = $stock->quantity;
-                    $materiel = Stock::where('name', $materielName)->first();
+                    $materiel = Stock::where('user_id', $userId)->where('name', $materielName)->first();
                     $stockTotal = $materiel->quantity - $stock->pivot->quantity * $item->quantity;
     
                     // Stock::where('user_id', $userId)->where('name', $materielName)->update([
                     //     'quantity' => $stockTotal 
                     // ]);
-                    Stock::where('name', $materielName)->update([
+                    Stock::where('user_id', $userId)->where('name', $materielName)->update([
                         'quantity' => $stockTotal 
                     ]);
                 }

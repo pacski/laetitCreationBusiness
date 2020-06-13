@@ -15,8 +15,9 @@ class StockController extends Controller
 
     public function index(StockRepository $stockRepository)
     {
-        $stocks = $stockRepository->listByType();
-        $quantityType = $stockRepository->quantityTypeCount();
+        $userId = \Auth::id();
+        $stocks = $stockRepository->listByType($userId);
+        $quantityType = $stockRepository->quantityTypeCount($userId);
 
 
         return view('pages.stock.index', [
@@ -30,7 +31,7 @@ class StockController extends Controller
     {
         if ($request->file('image') != null )
         {
-            $image = $storeImage->store($request->file('image'), "Stock");
+            $image = $storeImage->store($request->file('image'), 'Stock');
         }
         else
         {
@@ -47,6 +48,7 @@ class StockController extends Controller
         }
         
         $params = [
+            'user_id' => \Auth::id(),
             'name' => $request->name,
             'quantity' => $request->quantity,
             'quantity_type' => $request->quantity_type,

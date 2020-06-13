@@ -18,7 +18,7 @@ class ProductRepository extends ResponseManagement
             'cost' => 'required',
             'price' => 'required',
             'productionTime' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
             'materiel_1' => ['required'],
             'quantity_1' => ['required']
         ]);
@@ -38,7 +38,7 @@ class ProductRepository extends ResponseManagement
 
                 $materielId = $materiel->id;
 
-                $product = Product::where('user_id', $$params['user_id'])->where('name', $params['name'])->first();
+                $product = Product::where('user_id', $params['user_id'])->where('name', $params['name'])->first();
                 $product->stocks()->attach($materielId, ['quantity' => $materiel->quantity ]);
             }
         }
