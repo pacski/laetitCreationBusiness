@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('image');
-            $table->string('fabricName');
+            $table->string('fabric_name');
             $table->timestamps();
         });
     }

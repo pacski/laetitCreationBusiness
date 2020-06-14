@@ -9,7 +9,7 @@ class Command extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'number', 'origin', 'fname', 'lname', 'adress', 'postalCode',
+    protected $fillable = ['user_id', 'number', 'origin', 'fname', 'lname', 'adress', 'postal_code',
          'city', 'status', 'comment'];
 
     public function articles ()

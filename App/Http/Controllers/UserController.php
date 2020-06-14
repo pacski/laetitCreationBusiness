@@ -23,13 +23,9 @@ class UserController extends Controller
 
     public function create (Request $request, UserRepository $userRepository)
     {
-        $params = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        $params = $request->all();
         
-        $record = $userRepository->create($params, $request);
+        $record = $userRepository->create($params, true);
 
         return $record;
     }

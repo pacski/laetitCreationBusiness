@@ -20,7 +20,7 @@ class CreateCommandsTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('adress');
-            $table->integer('postalCode');
+            $table->integer('postal_code');
             $table->string('city');
             $table->integer('status');
             $table->timestamps();

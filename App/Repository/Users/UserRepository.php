@@ -13,26 +13,33 @@ class UserRepository extends ResponseManagement
 {
     public function index()
     {
-        $record = User::all();
-        return $record;
+        $records = User::all();
+        return $records;
     }
 
-    public function create(array $params = [], $request)
+    public function create(array $params = [], bool $getRecord = false)
     {
-        $request->validate([
-            'name' => "required",
-            'email' => "required",
-            'password' => "required",
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ];
+        \Validator::make($params,$rules)->validate();
+
+        $record = User::create([
+            'name' => $params['name'],
+            'email' => $params['email'],
+            'password' => $params['password'],
         ]);
 
-        return 
-        User::create([
-         'name' => $params['name'],
-         'email' => $params['email'],
-         'password' => $params['password'],
-         ]);
-
-
+        if (!$getRecord)
+        {
+            return $this->response($records, 200);
+        }
+        else
+        {
+            return $records;
+        }
     }
 
 

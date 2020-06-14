@@ -113,7 +113,7 @@ class StatsController extends Controller
         foreach ($articles as $key => $article) {
             $Ca = $Ca + $article->quantity * $article->price;
 
-            $production_time = $production_time + $article->product->productionTime;
+            $production_time = $production_time + $article->product->production_time;
 
         }
         $dataCa = ['Chiffre d\'affaire', $Ca, '€'];

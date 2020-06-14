@@ -16,7 +16,7 @@ class stockAvailable implements Rule
      *
      * @return void
      */
-    public function __construct(ProductRepository $productRepository, $request)
+    public function __construct(ProductRepository $productRepository, $params)
     {
         $this->userId = \Auth::id();
         $this->nbProducts = count($productRepository->list($this->userId));
@@ -27,10 +27,9 @@ class stockAvailable implements Rule
             $details = [];
             $objDetails= new \stdClass();
 
-
-            $product = Product::where('name', $request->input('product-'.$i))->first();
-            $quantityProduct = $request->input('quantity-'.$i);
-            $fabric = Fabric::where('name', $request->input('tissu-'.$i))->first();
+            $product = Product::where('name', $params['product-'.$i])->first();
+            $quantityProduct = $params['quantity-'.$i];
+            $fabric = Fabric::where('name', $params['tissu-'.$i])->first();
 
             // vider les arrays sans produit
            if (!empty($product))
@@ -53,7 +52,7 @@ class stockAvailable implements Rule
                 unset($details);
             }else
             {
-                $fabricValidation = ($fabric->quantity - $product->cost * $quantityProduct) > 0 ? true : false ;
+                $fabricValidation = ($fabric->quantity - $product->cost * $quantityProduct) >= 0 ? true : false ;
 
                 $theFabric = [];
                 $objFabric = new \stdClass();
@@ -69,7 +68,7 @@ class stockAvailable implements Rule
                 {
                     $materiel = Stock::where('id', $item->pivot->stock_id)->first();
 
-                    $materielValidation = ($materiel->quantity - $quantityProduct * $item->pivot->quantity) > 0 ? true : false ;
+                    $materielValidation = ($materiel->quantity - $quantityProduct * $item->pivot->quantity) >= 0 ? true : false ;
 
                     $theMateriels = [];
                     $objtheMateriels = new \stdClass();

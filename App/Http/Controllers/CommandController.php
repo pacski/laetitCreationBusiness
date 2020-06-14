@@ -25,61 +25,11 @@ class CommandController extends Controller
     {
           $userId = \Auth::id();
 
-          $products = $productRepository->list($userId);
-          $fabrics = $fabricRepository->list($userId);
-          $commands = $commandRepository->list($userId);
-     
+          $products = $productRepository->list($userId, true);
+          $fabrics = $fabricRepository->list($userId, true);
+          $commands = $commandRepository->list($userId, true);
 
-     //    $test = new \stdClass();
-
-     //   for ($i=1; $i < 10; $i++) { 
-     //        $product = "product-".$i;
-     //        $secondObject =  new \stdClass();
-     //        $test->$product = $secondObject;
-
-     //        $productName = "product-".$i;
-     //        $productQuantity = "quantity-".$i;
-     //        $productTissu = "tissu-".$i;
-
-     //        $secondObject->name = $productName;
-     //        $secondObject->quantity = $productQuantity;
-     //        $secondObject->tissu = $productTissu;
-
-
-     //   }
-     //   \Debugbar::info($test);
-     //   $product = Product::where('name', 'produit 4')->first();
-
-     //   foreach ($product->stocks as $key => $stock) {
-     //      // \Debugbar::info($stock->name);
-     //      // \Debugbar::info($stock->pivot->quantity);
-     //      $materielName = $stock->name;
-     //      $materielQuantity = $stock->quantity;
-     //      $materiel = Stock::where('name', $materielName)->first();
-     //      $stockTotal = $materiel->quantity - $stock->pivot->quantity * 4;
-     //      \Debugbar::info( 'materielName :' .$materielName);
-     //      \Debugbar::info( 'materielQuantity :'.$materielQuantity);
-     //      \Debugbar::info( 'materiel :'.$materiel);
-     //      \Debugbar::info( 'stockTotal :'.$stockTotal);
-     // }
-     // foreach ($test as $key => $item) {
-
-          // $product = Product::where('name', 'pouroduit 3')->first();
-
-          // $fabric = Fabric::where('name', 'tissus3')->first();
-          // $total = $fabric->quantity - $product->cost * 1;
-
-          // \Debugbar::info($product);
-          // \Debugbar::info($fabric);
-          // \Debugbar::info($total);
-          // Fabric::where('name', $item->tissu)->update([
-          //     'quantity' => $total
-          // ]);
-
-      //}
-
-
-        return view('pages.command.index', [
+          return view('pages.command.index', [
             "products" => $products,
             "fabrics" => $fabrics,
             "commands" => $commands
@@ -90,8 +40,8 @@ class CommandController extends Controller
     ArticleRepository $articleRepository, StockRepository $stockRepository,
     FabricRepository $fabricRepository, ProductRepository $productRepository )
     {
-     $userId = \Auth::id();
      $productArray = [];
+     $userId =  \Auth::id();
      $products = new \stdClass();
 
      $nbProducts = count($productRepository->list($userId));
@@ -118,33 +68,23 @@ class CommandController extends Controller
           }
      }
 
-     $params = [
-          'user_id' => $userId,
-          'lname' => $request->lname,
-          'fname' => $request->fname,
-          'adresse' => $request->adresse,
-          'postalCode' => $request->postalCode,
-          'city' => $request->city,
-          'origin' => $request->origin,
-          'nbProduct' => count($productArray),
-     ];
+     $params = $request->all();
+     $params['user_id'] = \Auth::id();
+     $params['nbProduct'] = count($productArray);
 
-     $commandRepository->create($params, $request);
-     $command = $commandRepository->showLast($userId);
-     $articleRepository->create($command,  $products, $userId);
-     $stockRepository->stockAfterCommand($products, $userId);
-     $fabricRepository->stockAfterCommand($products, $userId);
-
-
-
+     $commandRepository->store($params, true);
+     $command = $commandRepository->showLast($userId, true);
+     $articleRepository->store($command,  $products, $userId, true);
+     $stockRepository->stockAfterCommand($products, $userId, true);
+     $fabricRepository->stockAfterCommand($products, $userId, true);
      return back();
     }
 
     public function updateStatus(Request $request, CommandRepository $commandRepository)
     {     
          $params = [
-          'commandId' => $request->id,
-          'status' => $request->status
+               'commandId' => $request->id,
+               'status' => $request->status
          ];
           $response = $commandRepository->updateStatus($params);
           return response($response['body'], $response['code']);
@@ -162,10 +102,7 @@ class CommandController extends Controller
 
      public function delete (Request $request, CommandRepository $commandRepository)
      {
-          $params = [
-               'commandId' => $request->id,
-          ];
-          $response = $commandRepository->delete($params);
+          $response = $commandRepository->delete($request->id);
           return response($response['body'], $response['code']);
      }
 }

@@ -10,9 +10,9 @@ use \stdClass;
 
 class StockRepository extends ResponseManagement
 {
-    public function store(array $params = [])
+    public function store(array $params = [], bool $getRecord = false)
     {
-        Stock::create([
+        $record = Stock::create([
             'user_id' => $params['user_id'],
             'name' => $params['name'],
             'quantity' => $params['quantity'],
@@ -23,11 +23,18 @@ class StockRepository extends ResponseManagement
             'price' => $params['price'],
             'total_expense' => $params['price'],
          ]);
- 
 
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }
     }
 
-    public function listByType($userId = null)
+    public function listByType($userId = null, bool $getRecord = false)
     {
         $type = Stock::where('user_id', $userId)->select('type')->distinct()->get();
         $typeNb = Stock::where('user_id', $userId)->select('type')->distinct()->get()->count();
@@ -39,28 +46,50 @@ class StockRepository extends ResponseManagement
             $field = $type[$i]->type;
             $object->$field = Stock::where('user_id', $userId)->where('type', $field)->get();
         }
-        $type = $object;
+        $record = $object;
 
-        return $type;
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }
     }
 
-    public function list($userId = null)
+    public function list($userId = null, bool $getRecord = false)
     {
-        $stocks = Stock::where('user_id', $userId)->orderBy('type')->get();
-        return $stocks;
+        $records = Stock::where('user_id', $userId)->orderBy('type')->get();
+
+        if (!$getRecord)
+        {
+            return $this->response($records, 200);
+        }
+        else
+        {
+            return $records;
+        }
     }
 
-    public function quantityTypeCount($userId = null)
+    public function quantityTypeCount($userId = null, bool $getRecord = false)
     {
-        $quantityType = Stock::where('user_id', $userId)->select('quantity_type')->distinct()->get();
-        return $quantityType;
+        $record = Stock::where('user_id', $userId)->select('quantity_type')->distinct()->get();
+
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }
     }
 
-    public function stockAfterCommand(object $products, int $userId)
+    public function stockAfterCommand(object $products, int $userId, bool $getRecord = false)
     {
-
-        foreach ($products as $key => $item) {
-
+        foreach ($products as $key => $item) 
+        {
             $product = Product::where('user_id', $userId)->where('name', $item->name)->first();
 
             if (isset($product->stocks))
@@ -72,25 +101,19 @@ class StockRepository extends ResponseManagement
                     $materiel = Stock::where('user_id', $userId)->where('name', $materielName)->first();
                     $stockTotal = $materiel->quantity - $stock->pivot->quantity * $item->quantity;
     
-                    // Stock::where('user_id', $userId)->where('name', $materielName)->update([
-                    //     'quantity' => $stockTotal 
-                    // ]);
-                    Stock::where('user_id', $userId)->where('name', $materielName)->update([
+                    $record = Stock::where('user_id', $userId)->where('name', $materielName)->update([
                         'quantity' => $stockTotal 
                     ]);
                 }
             }
         }
-    
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }
    }    
-
-    public function updateStatus(array $params = [])
-    {
-    }
-
-    public function cancelRequest($id)
-    {
-    }
-
-
 }

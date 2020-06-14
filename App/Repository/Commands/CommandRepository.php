@@ -15,81 +15,118 @@ use App\Rules\stockAvailable;
 
 class CommandRepository extends ResponseManagement
 {
-    public function create(array $params = [], $request)
+    public function store(array $params = [],bool $getRecord = false)
     {
         $nbCommand = Command::count() + 1;
         $number = date('dmo') . $nbCommand ;
 
-        $stockTissus = Fabric::where('name', $request->input('tissu-1'))->first();
-        $product = Product::where('name', $request->input('product-1'))->first();
-
-        $validation = $request->validate([
-                    'lname' => ['required'],
-                    'fname' => ['required'],
-                    'adresse' => ['required'],
-                    'postalCode' => ['required'],
-                    'city' => ['required'],
-                    'origin' => ['required'],
-                    'product-1' => ['required'],
-                    'quantity-1' => ['required'],
-                    'tissu-1' => ['required'],
-                ]);
-
-        if (!is_null($validation['product-1']) && !is_null($validation['quantity-1']) && !is_null($validation['tissu-1']) )
-        {
-            $validation = $request->validate([
-                    'stocks'=> [new stockAvailable(new ProductRepository,$request)],
-            ]);
-        }
+        $rules = [
+            'lname' => 'required',
+            'fname' => 'required',
+            'adresse' => 'required',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'origin' => 'required',
+            'product-1' => 'required',
+            'quantity-1' => 'required',
+            'tissu-1' => 'required',
+            'stocks'=> [new stockAvailable(new ProductRepository,$params)],
+        ];
+        \Validator::make($params,$rules)->validate();
  
-        Command::create([
+        $record = Command::create([
             'user_id' => $params['user_id'],
             'number' => $number,
             'origin' =>$params['origin'],
             'fname' =>$params['fname'],
             'lname' =>$params['lname'],
             'adress' =>$params['adresse'],
-            'postalCode' =>$params['postalCode'],
+            'postal_code' =>$params['postal_code'],
             'city' =>$params['city'],
             'status' => 1,
         ]);
+
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }
     }
 
-    public function list($userId)
+    public function list($userId, bool $getRecord = false)
     {
         $records = Command::where('user_id', $userId)->paginate(10);
-        return $records;
+
+        if (!$getRecord)
+        {
+            return $this->response($records, 200);
+        }
+        else
+        {
+            return $records;
+        }    
     }
 
-    public function showLast($userId){
+    public function showLast($userId, bool $getRecord = false){
 
-        $command = Command::where('user_id', $userId)->orderBy('created_at', 'desc')->first();
-        return $command;
+        $record = Command::where('user_id', $userId)->orderBy('created_at', 'desc')->first();
+
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        } 
     }
 
-    public function updateStatus (Array $params = [])
+    public function updateStatus (Array $params = [], bool $getRecord = false)
     {
         $record = Command::where('id', $params['commandId'])->update([
             'status' => $params['status']
         ]);
 
-        return $this->Response($record, 200);
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }   
     } 
 
-    public function addComment (Array $params = [])
+    public function addComment (Array $params = [], bool $getRecord = false)
     {
         $record = Command::where('id', $params['commandId'])->update([
             'comment' => $params['comment']
         ]);
 
-        return $this->Response($record, 200);
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        }   
     } 
-    public function delete (Array $params = [])
+    public function delete (Array $params = [], bool $getRecord = false)
     {
-        $record = Command::where('id', $params['commandId'])->delete();
+        $record = Command::where('id', $params['command_id'])->delete();
         
-        return $this->Response($record, 200);
-
+        if (!$getRecord)
+        {
+            return $this->response($record, 200);
+        }
+        else
+        {
+            return $record;
+        } 
     }
         
 }

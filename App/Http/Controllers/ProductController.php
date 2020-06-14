@@ -22,10 +22,10 @@ class ProductController extends Controller
     {
         $userId = \Auth::id();
 
-        $products = $productRepository->list($userId);
-        $stocks = $stockRepository->list($userId);
+        $products = $productRepository->list($userId, true);
+        $stocks = $stockRepository->list($userId, true);
 
-        $stocksTest = $stockRepository->listByType($userId);
+        $stocksTest = $stockRepository->listByType($userId,true);
 
 
         return view('pages.product.index', [
@@ -47,14 +47,9 @@ class ProductController extends Controller
             $image = null ;
         }
         
-        $params = [
-            'user_id' => \Auth::id(),
-            'name' => $request->name,
-            'cost' => $request->cost,
-            'price' => $request->price,
-            'productionTime' => $request->productionTime,
-            'image' => $image,
-        ];
+        $params = $request->all();
+        $params['image'] = $image;
+        $params['user_id'] = \Auth::id();
 
         $materiels = new stdClass();
 
@@ -71,7 +66,7 @@ class ProductController extends Controller
             $secondObject->quantity = $request->input($materielQuantity);   
         }
 
-        $response = $productRepository->store($params, $materiels, $request);
+        $response = $productRepository->store($params, $materiels, true);
 
         return back();
     }

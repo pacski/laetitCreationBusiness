@@ -17,8 +17,6 @@ class GeneralController extends Controller
     
     public function index(UserRepository $userRepository)
     {
-        // $products = $productRepository->list();
-        // $stocks = $stockRepository->list();
         $record = $userRepository->index();
         return view('pages.home.index', [
             'users' => $record,

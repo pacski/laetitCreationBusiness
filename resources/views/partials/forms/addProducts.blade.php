@@ -30,9 +30,9 @@
         </div>
         <div class="form-row d-flex justify-content-center">
           <div class="col-md-6 mb-6 ">
-            <input type="number" class="form-control" id="validationCustom04" placeholder="Temps de production (Min)" name="productionTime" required>
-            @if ($errors->has('productionTime'))
-              <p>{{$errors->first('productionTime')}}</p>
+            <input type="number" class="form-control" id="validationCustom04" placeholder="Temps de production (Min)" name="production_time" required>
+            @if ($errors->has('production_time'))
+              <p>{{$errors->first('production_time')}}</p>
             @endif
           </div>
         </div>

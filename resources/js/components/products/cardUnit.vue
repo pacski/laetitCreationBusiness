@@ -12,7 +12,7 @@
                 </div>
                 <div class="d-flex flex-column logo">
                     <svg class="svg-product" height="30" width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16.32 7.1A8 8 0 1 1 9 4.06V2h2v2.06c1.46.18 2.8.76 3.9 1.62l1.46-1.46 1.42 1.42-1.46 1.45zM10 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM7 0h6v2H7V0zm5.12 8.46l1.42 1.42L10 13.4 8.59 12l3.53-3.54z"/></svg>            
-                    <p class="text-center">{{this.product.productionTime}}min</p>
+                    <p class="text-center">{{this.product.production_time}}min</p>
                 </div>
                 <div class="d-flex flex-column logo">
                     <svg class="svg-product" height="30" width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 0H6L0 3v6l4-1v12h12V8l4 1V3l-6-3h-1a3 3 0 0 1-6 0z"/></svg>

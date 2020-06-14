@@ -18,7 +18,7 @@
               <p class="card-text text-center font-weight-bold text-black" >{{$product->nbmade}} produite</p>
               <p class="card-text text-center font-weight-bold text-black" >{{$product->cost}} cm</p>
               <p class="card-text text-center font-weight-bold text-black" >{{$product->price}}€</p>
-              <p class="card-text text-center font-weight-bold text-black" >{{$product->productionTime}} min</p>
+              <p class="card-text text-center font-weight-bold text-black" >{{$product->production_time}} min</p>
             </div>
         </div> 
         @endforeach

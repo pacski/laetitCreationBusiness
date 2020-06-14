@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('cost');
             $table->integer('price');
-            $table->integer('productionTime');
+            $table->integer('production_time');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class FabricController extends Controller
     public function index(FabricRepository $fabricRepository)
     {
         $userId = \Auth::id(); 
-        $fabrics = $fabricRepository->list($userId);
+        $fabrics = $fabricRepository->list($userId, true);
 
         return view('pages.fabric.index', [
             'fabrics' => $fabrics
@@ -35,14 +35,11 @@ class FabricController extends Controller
             $image = null ;
         }
  
-        $params = [
-            'user_id' => \Auth::id(),
-            'name' => $request->name,
-            'quantity' => $request->quantity,
-            'image' => $image,
-            'price' => $request->price,
-        ];
-        $response = $fabricRepository->store($params,$request);
+        $params = $request->all();
+        $params['image'] = $image;
+        $params['user_id'] = \Auth::id();
+        
+        $response = $fabricRepository->store($params, true);
 
         return back();
     }

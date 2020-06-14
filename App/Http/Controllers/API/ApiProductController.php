@@ -12,7 +12,6 @@ class ApiProductController extends Controller
     public function index()
     {
         $userId = \Auth::id();
-        
         $record = Product::where('user_id', $userId)->get();
         return $record;
     }

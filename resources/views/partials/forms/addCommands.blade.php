@@ -23,9 +23,9 @@
             @endif
           </div>
           <div class="col-md-4">
-            <input type="number" class="form-control"  placeholder="Code postal" name="postalCode" value="{{old('postalCode')}}" required>
-            @if ($errors->has('postalCode'))
-              <p>{{$errors->first('postalCode')}}</p>
+            <input type="number" class="form-control"  placeholder="Code postal" name="postal_code" value="{{old('postal_code')}}" required>
+            @if ($errors->has('postal_code'))
+              <p>{{$errors->first('postal_code')}}</p>
             @endif
           </div>
           <div class="col-md-4">
