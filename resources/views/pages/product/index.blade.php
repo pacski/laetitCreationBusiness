@@ -1,7 +1,7 @@
 @extends('layouts/application')
 
 @section('content')
-<h1 class="text-center">Liste produits</h1>
+<h1 id="product-page" class="text-center">Liste produits</h1>
 @include('partials.forms.addProducts')
 <hr>
 <div id="app">

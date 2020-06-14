@@ -161,5 +161,3 @@
       @if ($errors->has('stocks'))
         <p>{{$errors->first('stocks')}}</p>
       @endif
-     
-      <script src="/assets/js/command/addCommand.js"></script>

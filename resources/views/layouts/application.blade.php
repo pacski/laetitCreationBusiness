@@ -27,13 +27,11 @@
 <script src="https://unpkg.com/vue-chartjs@2.5.7-rc3/dist/vue-chartjs.full.min.js"></script>
 </head>
 <body>
-    <script src="/assets/js/route.js"></script>
     @include('layouts/nav')
     @yield('content')
     {{-- @include('layouts/partials/footer') --}}
-    <script>
-        @include('pages.js')
-    </script>
     <script src="/js/app.js"></script>
+    <script src="{{ asset(mix('js/front.js')) }}"></script>
+    <script src="{{ asset(mix('js/admin.js')) }}"></script>
 </body>
 </html>

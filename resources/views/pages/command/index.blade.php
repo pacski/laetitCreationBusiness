@@ -1,7 +1,7 @@
 @extends('layouts/application')
 
 @section('content')
-<h1 class="text-center">listes Commandes</h1>
+<h1 id="command-page" class="text-center">listes Commandes</h1>
 
 <div class="addFormCommands">
   @include('partials.forms.addCommands')
@@ -20,6 +20,6 @@
   <list-command></list-command>
 </div>
 </div>
-<script src="/assets/js/command/indexCommand.js"></script>
+<script src="/js/front/command/addCommand.js"></script>
 @endsection
 

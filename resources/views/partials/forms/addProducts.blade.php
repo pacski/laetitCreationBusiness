@@ -120,4 +120,3 @@
           <button class="btn-pink col-md-6 mb-6" type="submit">Ajouter Produit</button>
         </div>
       </form>
-      <script src="/assets/js/product/addProduct.js"></script>

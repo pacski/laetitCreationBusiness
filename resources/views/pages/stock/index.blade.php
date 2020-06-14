@@ -1,7 +1,7 @@
 @extends('layouts/application')
 
 @section('content')
-<h1 class="text-center">Stock</h1>
+<h1 id="stock-page" class="text-center">Stock</h1>
 <div class="addFormTissus">
     @include('partials/forms/addStock')
 </div>

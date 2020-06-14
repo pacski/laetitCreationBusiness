@@ -75,5 +75,3 @@
         
         <button class="btn-pink   mx-auto" style="width:100%" type="submit">Ajouter materiel</button>
       </form>
-
-      <script src="assets/js/product/addStock.js"></script>
