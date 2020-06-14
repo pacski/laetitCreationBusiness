@@ -15,7 +15,6 @@ class ApiCommandController extends Controller
         $record = Command::with('articles')
             ->where('user_id', $userId)
             ->get();
-
         return $record;
     }
 

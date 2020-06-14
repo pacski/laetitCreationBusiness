@@ -73,7 +73,7 @@ export default {
             })
         },
         getProducts(){
-            axios.get('/api-tool/listingProduct')
+            axios.get('/stats/service/listingProduct')
             .then(({data}) =>{
                 this.products = data
             })

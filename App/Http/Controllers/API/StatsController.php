@@ -20,7 +20,8 @@ class StatsController extends Controller
         $months = [ 'Janvier', 'Février', 'Mars', 'Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Décembre'];
         $data = [];
 
-        for ($i=0; $i < count($months); $i++) { 
+        for ($i=0; $i < count($months); $i++) 
+        { 
             $obj = new \stdClass;
             $name = $months[$i];
             $obj->name = $months[$i];
@@ -34,7 +35,8 @@ class StatsController extends Controller
     public function statsYear()
     {
         $data = [];
-        for ($i=1; $i <= 12; $i++) { 
+        for ($i=1; $i <= 12; $i++) 
+        { 
            $record =  Command::whereMonth('created_at', $i)->count();
            array_push($data, $record);
         }
@@ -46,17 +48,15 @@ class StatsController extends Controller
     {   
         $data = [];
 
-        for ($i=1; $i <= 12; $i++) { 
-    
+        for ($i=1; $i <= 12; $i++) 
+        { 
             $record = Article::whereMonth('created_at', $i)
-                ->where('name', $product)
-                ->sum('quantity');
+                        ->where('name', $product)
+                        ->sum('quantity');
 
             array_push($data, intval($record) );
         }
-
         return $data;
-
     }
 
     public function statsOrigin ($month)
@@ -79,7 +79,8 @@ class StatsController extends Controller
 
         $products = Product::all();
 
-        foreach ($products as $key => $item) {
+        foreach ($products as $key => $item) 
+        {
             $record = Article::where('name', $item->name)
                 ->sum('quantity');
 

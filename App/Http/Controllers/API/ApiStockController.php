@@ -32,7 +32,7 @@ class ApiStockController extends Controller
     {
         $userId = \Auth::id();
         $record = Stock::where('user_id', $userId)->selectRaw('type as text, type as value')->distinct()
-            ->get();
+                    ->get();
 
         return $record;
     }

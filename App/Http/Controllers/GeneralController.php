@@ -18,8 +18,9 @@ class GeneralController extends Controller
     public function index(UserRepository $userRepository)
     {
         $record = $userRepository->index();
+        
         return view('pages.home.index', [
             'users' => $record,
-            ]);
+        ]);
     }
 }
