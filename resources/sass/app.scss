@@ -6,3 +6,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// General
+@import 'general';
+
+
+// Pages
+@import 'pages/command.scss';
+@import 'pages/fabric.scss';
+@import 'pages/product.scss';
+@import 'pages/stock.scss';
+
+// Partials 
+@import 'partials/footer.scss';
+@import 'partials/nav.scss';
+

@@ -59,3 +59,10 @@ Route::prefix('/user')->group(function (){
         ->name('users.index');
 });
 //////////////////
+
+
+// User
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('user.login');
+Route::get('/logout', 'UserController@logout')->name('user.logout');

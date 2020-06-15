@@ -19,9 +19,6 @@ td, tr{
 
 
 
-/* page search */
-
-
 .backButton{    
     margin: 0 0 10px 10px;
 }
@@ -34,7 +31,6 @@ td, tr{
     background-color: #efc6cc;
 }
 
-/* pagination */
 
 .pagination a {
     color: #efc6cc;

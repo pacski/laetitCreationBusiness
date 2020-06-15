@@ -30,5 +30,11 @@ class UserController extends Controller
         return $record;
     }
 
+    public function logout ()
+    {
+        \Auth::logout();
+        return view('auth.login');
+    }
+
    
 }

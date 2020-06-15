@@ -24,6 +24,9 @@
             <li class="nav-item">
             <a class="nav-link" href="{{Route("pages.user.index")}}">Mon compte</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{Route("user.logout")}}">Deconnexion</a>
+            </li>
             {{-- <li class="nav-item">
             <a class="nav-link" href="{{Route("depenses")}}">Dépenses</a>
             </li> --}}
