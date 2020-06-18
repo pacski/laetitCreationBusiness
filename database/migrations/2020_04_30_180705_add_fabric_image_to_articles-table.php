@@ -26,7 +26,7 @@ class AddFabricImageToArticlesTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('fabricImage');
+            $table->dropColumn('fabric_image');
         });
     }
 }

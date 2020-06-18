@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','GeneralController@index')->middleware('auth')
+Route::get('/','GeneralController@index')
     ->name('pages.home.index');
 
 Route::prefix('/product')->group(function (){

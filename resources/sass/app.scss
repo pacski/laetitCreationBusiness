@@ -11,14 +11,15 @@
 @import 'general';
 
 
+// Partials 
+@import 'partials/footer.scss';
+@import 'partials/nav.scss';
+
+
 // Pages
 @import 'pages/command.scss';
 @import 'pages/fabric.scss';
 @import 'pages/product.scss';
 @import 'pages/stock.scss';
 @import 'pages/login.scss';
-
-// Partials 
-@import 'partials/footer.scss';
-@import 'partials/nav.scss';
 
