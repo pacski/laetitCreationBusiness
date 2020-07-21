@@ -10882,15 +10882,6 @@ a.text-dark:focus {
   }
 }
 
-.navbar {
-  position: fixed;
-  margin-top: 200px;
-}
-
-h1 {
-  color: red;
-}
-
 .connexion-container {
   margin-top: 10%;
 }

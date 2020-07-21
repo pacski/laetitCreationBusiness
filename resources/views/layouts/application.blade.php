@@ -15,7 +15,7 @@
     <link href="/css/productCarrousel.css" rel="stylesheet">
     <link href="/css/listeDesCommandes.css" rel="stylesheet">
     <link href="/css/command/command.css" rel="stylesheet">
-
+    <link href="{{asset(mix('css/app.css'))}}" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     

@@ -1,4 +1,3 @@
-<h1>test</h1>
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
   <div class="col-md-2">
     <a class="navbar-brand" href="{{Route("pages.home.index")}}">Stox</a>

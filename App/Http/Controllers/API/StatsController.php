@@ -118,7 +118,7 @@ class StatsController extends Controller
 
         }
         $dataCa = ['Chiffre d\'affaire', $Ca, '€'];
-        $dataProduction_time = ['Temps de travail ', $production_time/60, 'h'];
+        $dataProduction_time = ['Temps de travail ', number_format($production_time/60, 2), 'h'];
         
    
         // commande_en_attente /////////////////////
