@@ -14,7 +14,7 @@ class AdUserIdToProductTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id')->nullable();
+            $table->unsignedBigInteger('user_id')->after('id');
         });
     }
 

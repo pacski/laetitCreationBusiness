@@ -14,7 +14,7 @@ class AdUserIdToFabricTable extends Migration
     public function up()
     {
         Schema::table('fabrics', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id')->nullable();
+            $table->unsignedBigInteger('user_id')->after('id');
         });
     }
 
