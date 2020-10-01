@@ -14,7 +14,7 @@ class AddFabricImageToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->string('fabric_image')->after('fabric_name');
+            $table->string('fabric_image')->after('fabric_name')->nullable();
         });
     }
 

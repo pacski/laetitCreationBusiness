@@ -14,7 +14,7 @@ class AddTotalExpenseToStockTable extends Migration
     public function up()
     {
         Schema::table('stocks', function (Blueprint $table) {
-            $table->integer('total_expense')->after('price');
+            $table->integer('total_expense')->after('price')->nullable();
         });
     }
 
